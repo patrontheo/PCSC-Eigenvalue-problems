@@ -1,15 +1,68 @@
-
+#include <string>
 #include <iostream>
+#include <fstream>
+#include <vector>
 #include <Eigen/Dense>
 
 using Eigen::MatrixXd;
 
-int main()
-{MatrixXd m(2,2);
-m(0,0) = 3;
-m(1,0) = 2.5;
-m(0,1) = -1;
-m(1,1) = m(1,0) + m(0,1);
-std::cout << m << std::endl;
-std::cout << m << std::endl;
+
+class Input{
+public:
+    virtual MatrixXd load_data(std::string filename) = 0;
+};
+
+class Load_CSV: public Input{
+public:
+    MatrixXd load_data(std::string filename){
+
+        std::vector<double> entries;
+        std::ifstream inputfile(filename);
+        std::string row;
+        std::string element;
+        int count_line(0);
+        
+        while (getline(inputfile, row)) 
+        {
+            std::stringstream row_stream(row);
+            while (getline(row_stream, element, ','))
+            {
+                entries.push_back(stod(element));  
+            }
+            count_line++; 
+        }
+
+        int count_column(entries.size() / count_line);
+
+        return Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>>(entries.data(), count_line, count_column);
+    }
+};
+
+
+class Output{
+public:
+    virtual void write_data(std::string filename, MatrixXd matrix) = 0;
+};
+
+class Write_CSV: public Output{
+public:
+    virtual void write_data(std::string filename, MatrixXd matrix){
+        const static Eigen::IOFormat CSVFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, ", ", "\n");
+        std::ofstream outputfile(filename.c_str());
+        outputfile << matrix.format(CSVFormat);
+    }
+
+};
+
+int main(int argc, char *argv[])
+{
+    MatrixXd mat;
+    Load_CSV loader;
+    mat = loader.load_data("../mat.csv");
+    
+    std::cout << mat << std::endl;
+    mat(1,1) = 350;
+
+    Write_CSV writer;
+    writer.write_data("../out_mat.csv", mat);
 }
