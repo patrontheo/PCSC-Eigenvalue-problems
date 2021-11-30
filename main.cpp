@@ -4,6 +4,12 @@
 #include <vector>
 #include <Eigen/Dense>
 
+
+#include "AbstractLinalgSolver.hpp"
+#include "Power.hpp"
+
+
+
 using Eigen::MatrixXd;
 
 
@@ -62,6 +68,14 @@ int main(int argc, char *argv[])
     
     std::cout << mat << std::endl;
     mat(1,1) = 350;
+
+
+    // Solving
+
+    AbstractLinalgSolver<Eigen::MatrixXd,3> *pSolver = 0;
+    pSolver = new Power<Eigen::MatrixXd,3>;
+    pSolver->SetMatrix(mat);
+
 
     Write_CSV writer;
     writer.write_data("../out_mat.csv", mat);
