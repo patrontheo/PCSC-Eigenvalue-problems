@@ -63,7 +63,7 @@ public:
 
 int main(int argc, char *argv[])
 {
-    Matrix3d mat;
+    MatrixXd mat;
     Load_CSV loader;
     mat = loader.load_data("../mat.csv");
     
@@ -73,12 +73,17 @@ int main(int argc, char *argv[])
 
     // Solving
 
-    AbstractLinalgSolver<Eigen::Matrix3d> *pSolver = 0;
+    AbstractLinalgSolver<MatrixXd> *pSolver = 0;
     // pSolver = new Power<Eigen::Matrix3d>;
-    pSolver = new AbstractLinalgSolver<Eigen::Matrix3d>;
+    pSolver = new AbstractLinalgSolver<MatrixXd>;
     pSolver->SetMatrix(mat);
+    
 
+    MatrixXd mat2 = pSolver->GetMatrix();
+    
+    std::cout << mat2 << std::endl;
 
+    delete pSolver;
     Write_CSV writer;
     writer.write_data("../out_mat.csv", mat);
 }

@@ -8,9 +8,7 @@
 
 // Constructor
 template <typename T>
-AbstractLinalgSolver<T>::AbstractLinalgSolver() { 
-    T mMatrix(3,3);
-    mMatrix << 1, 2, 3, 4, 5, 6,7, 8, 9;
+AbstractLinalgSolver<T>::AbstractLinalgSolver() : mMatrix() { 
 }
 // Destructor 
 template <typename T>
@@ -20,3 +18,5 @@ AbstractLinalgSolver<T>::~AbstractLinalgSolver() {}
 template <typename T>
 void AbstractLinalgSolver<T>::SetMatrix(T  Matrix) { mMatrix = Matrix; }
     
+
+template class AbstractLinalgSolver<Eigen::MatrixXd>;
