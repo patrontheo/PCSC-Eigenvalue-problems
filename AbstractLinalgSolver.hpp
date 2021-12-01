@@ -20,10 +20,10 @@ public:
 
     // Methods
     void SetMatrix(T Matrix);
-    T GetMatrix() const { return mMatrix; };
-    // virtual void SolveEquation() = 0;
+    T GetMatrix() const { return mMatrix; }
+    virtual void SolveEquation() = 0;
 
-private:
+protected:
     T mMatrix;
 };
 

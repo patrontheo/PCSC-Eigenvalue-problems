@@ -4,15 +4,11 @@
 #include <vector>
 #include <Eigen/Dense>
 
-
 #include "AbstractLinalgSolver.hpp"
-// #include "Power.hpp"
-
-
+#include "Power.hpp"
 
 using Eigen::MatrixXd;
 using Eigen::Matrix3d;
-
 
 class Input{
 public:
@@ -74,14 +70,13 @@ int main(int argc, char *argv[])
     // Solving
 
     AbstractLinalgSolver<MatrixXd> *pSolver = 0;
-    // pSolver = new Power<Eigen::Matrix3d>;
-    pSolver = new AbstractLinalgSolver<MatrixXd>;
-    pSolver->SetMatrix(mat);
-    
+    pSolver = new Power<MatrixXd>;
 
+    pSolver->SetMatrix(mat);
     MatrixXd mat2 = pSolver->GetMatrix();
-    
     std::cout << mat2 << std::endl;
+
+    pSolver->SolveEquation();
 
     delete pSolver;
     Write_CSV writer;

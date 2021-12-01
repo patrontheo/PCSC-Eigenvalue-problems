@@ -1,7 +1,6 @@
 #ifndef POWERHEADERDEF
 #define POWERHEADERDEF
 
-
 #include <iostream>
 #include <Eigen/Dense>
 #include <string>
@@ -18,11 +17,7 @@ public:
     virtual ~Power();
 
     //Methods
-    T GetMatrix() const { return mMatrix; };
     virtual void SolveEquation();
-
-private:
-    T mMatrix;
 
 };
 
