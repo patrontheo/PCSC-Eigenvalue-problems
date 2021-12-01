@@ -6,11 +6,12 @@
 
 
 #include "AbstractLinalgSolver.hpp"
-#include "Power.hpp"
+// #include "Power.hpp"
 
 
 
 using Eigen::MatrixXd;
+using Eigen::Matrix3d;
 
 
 class Input{
@@ -62,7 +63,7 @@ public:
 
 int main(int argc, char *argv[])
 {
-    MatrixXd mat;
+    Matrix3d mat;
     Load_CSV loader;
     mat = loader.load_data("../mat.csv");
     
@@ -72,8 +73,9 @@ int main(int argc, char *argv[])
 
     // Solving
 
-    AbstractLinalgSolver<Eigen::MatrixXd,3> *pSolver = 0;
-    pSolver = new Power<Eigen::MatrixXd,3>;
+    AbstractLinalgSolver<Eigen::Matrix3d> *pSolver = 0;
+    // pSolver = new Power<Eigen::Matrix3d>;
+    pSolver = new AbstractLinalgSolver<Eigen::Matrix3d>;
     pSolver->SetMatrix(mat);
 
 

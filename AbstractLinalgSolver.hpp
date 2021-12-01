@@ -3,16 +3,14 @@
 #define ABSTRACTLINALGSOLVERHEADERDEF
 
 
-
-
 #include <iostream>
 #include <Eigen/Dense>
 #include <string>
 #include <fstream>
 #include <vector>
 
-template <typename T, int dim> 
 
+template <typename T> 
 class AbstractLinalgSolver{
 public:
 
@@ -21,12 +19,12 @@ public:
     virtual ~AbstractLinalgSolver();
 
     // Methods
-    void SetMatrix(T **Matrix);
+    void SetMatrix(T Matrix);
     T GetMatrix() const { return mMatrix; };
-    virtual void SolveEquation() = 0;
+    // virtual void SolveEquation() = 0;
 
 private:
-    T mMatrix[dim][dim];
+    T mMatrix;
 };
 
 #endif

@@ -7,15 +7,16 @@
 
 
 // Constructor
-template <typename T, int dim>
-AbstractLinalgSolver<T,dim>::AbstractLinalgSolver() 
-    : mMatrix() {}
-
+template <typename T>
+AbstractLinalgSolver<T>::AbstractLinalgSolver() { 
+    T mMatrix(3,3);
+    mMatrix << 1, 2, 3, 4, 5, 6,7, 8, 9;
+}
 // Destructor 
-template <typename T, int dim>
-AbstractLinalgSolver<T,dim>::~AbstractLinalgSolver() {}
+template <typename T>
+AbstractLinalgSolver<T>::~AbstractLinalgSolver() {}
 
 // Method
-template <typename T, int dim>
-void AbstractLinalgSolver<T,dim>::SetMatrix(T  **Matrix) { mMatrix = Matrix; }
+template <typename T>
+void AbstractLinalgSolver<T>::SetMatrix(T  Matrix) { mMatrix = Matrix; }
     

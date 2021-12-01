@@ -10,8 +10,8 @@
 
 #include "AbstractLinalgSolver.hpp"
 
-template <typename T, int dim>
-class Power : public AbstractLinalgSolver<T, dim> {
+template <typename T>
+class Power : public AbstractLinalgSolver<T> {
 public:
     // Constructor and destructor
     Power();
@@ -22,7 +22,7 @@ public:
     virtual void SolveEquation();
 
 private:
-    T mMatrix[dim][dim];
+    T mMatrix;
 
 };
 
