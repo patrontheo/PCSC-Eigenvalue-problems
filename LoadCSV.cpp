@@ -3,7 +3,10 @@
 #include <iostream>
 #include <fstream>
 
-Eigen::MatrixXd LoadCSV::load_data(std::string filename){
+using namespace Eigen;
+
+template <typename T>
+T LoadCSV<T>::load_data(std::string filename){
 
     std::vector<double> entries;
     std::ifstream inputfile(filename);
@@ -25,3 +28,5 @@ Eigen::MatrixXd LoadCSV::load_data(std::string filename){
 
     return Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>>(entries.data(), count_line, count_column);
 }
+
+template class LoadCSV<MatrixXd>;

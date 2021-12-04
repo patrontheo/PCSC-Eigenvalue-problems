@@ -46,7 +46,6 @@ double Power<T>::SolveEquation() {
     X /=lambda_new;
     }   
 
-    std::cout << lambda_new << std::endl;
     return lambda_new;
 }   
 

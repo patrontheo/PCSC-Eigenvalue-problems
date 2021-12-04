@@ -3,9 +3,10 @@
 
 #include "Input.hpp"
 
-class LoadCSV: public Input{
+template <typename T> 
+class LoadCSV: public Input<T>{
 public:
-    Eigen::MatrixXd load_data(std::string filename);
+    T load_data(std::string filename);
 };
 
 #endif

@@ -18,17 +18,13 @@ using namespace Eigen;
 int main(int argc, char *argv[])
 {
     MatrixXd mat;
-    LoadCSV loader;
+    LoadCSV<MatrixXd> loader;
     mat = loader.load_data("../mat.csv");
     
     std::cout << mat << std::endl;
-    // mat(1,1) = 350;
-    std::cout << mat.rows() << std::endl;
-    
-
+    // mat(1,1) = 350;    
 
     // Solving
-
     AbstractLinalgSolver<MatrixXd> *pSolver = 0;
     pSolver = new Power<MatrixXd>;
 
@@ -36,8 +32,8 @@ int main(int argc, char *argv[])
     pSolver->SetMatrix(mat);
     pSolver->SetError(0.001);
     double eigenvalue = pSolver->SolveEquation();
-
+    std::cout << eigenvalue << std::endl;
     delete pSolver;
-    //WriteCSV writer<double>;
-    //writer.write_data("../out_mat.csv", eigenvalue);
+    WriteCSV<double> writer;
+    writer.write_data("../out_mat.csv", eigenvalue);
 }
