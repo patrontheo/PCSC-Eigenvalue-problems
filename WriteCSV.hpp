@@ -2,10 +2,12 @@
 #define WRITECSVHEADERDEF
 
 #include "Output.hpp"
+using namespace Eigen;
 
-class WriteCSV: public Output{
+template <typename T> 
+class WriteCSV: public Output<T>{
 public:
-    void write_data(std::string filename, Eigen::MatrixXd matrix);
+    void write_data(std::string filename, T data);
 };
 
 #endif

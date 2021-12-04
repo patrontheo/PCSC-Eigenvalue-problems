@@ -12,9 +12,7 @@
 #include "WriteCSV.hpp"
 
 
-using Eigen::MatrixXd;
-using Eigen::Matrix3d;
-
+using namespace Eigen;
 
 
 int main(int argc, char *argv[])
@@ -24,7 +22,9 @@ int main(int argc, char *argv[])
     mat = loader.load_data("../mat.csv");
     
     std::cout << mat << std::endl;
-    mat(1,1) = 350;
+    // mat(1,1) = 350;
+    std::cout << mat.rows() << std::endl;
+    
 
 
     // Solving
@@ -32,13 +32,12 @@ int main(int argc, char *argv[])
     AbstractLinalgSolver<MatrixXd> *pSolver = 0;
     pSolver = new Power<MatrixXd>;
 
+    // Set parameters
     pSolver->SetMatrix(mat);
-    MatrixXd mat2 = pSolver->GetMatrix();
-    std::cout << mat2 << std::endl;
-
-    pSolver->SolveEquation();
+    pSolver->SetError(0.001);
+    double eigenvalue = pSolver->SolveEquation();
 
     delete pSolver;
-    WriteCSV writer;
-    writer.write_data("../out_mat.csv", mat);
+    //WriteCSV writer<double>;
+    //writer.write_data("../out_mat.csv", eigenvalue);
 }

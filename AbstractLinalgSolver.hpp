@@ -9,6 +9,7 @@
 #include <fstream>
 #include <vector>
 
+using namespace Eigen;
 
 template <typename T> 
 class AbstractLinalgSolver{
@@ -20,11 +21,14 @@ public:
 
     // Methods
     void SetMatrix(T Matrix);
+    void SetError(double error);
     T GetMatrix() const { return mMatrix; }
-    virtual void SolveEquation() = 0;
+    double GetError() const { return mError; }
+    virtual double SolveEquation() = 0;
 
 protected:
     T mMatrix;
+    double mError;
 };
 
 #endif

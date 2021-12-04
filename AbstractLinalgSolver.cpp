@@ -5,10 +5,11 @@
 #include <vector>
 #include <Eigen/Dense>
 
+using namespace Eigen;
 
 // Constructor
 template <typename T>
-AbstractLinalgSolver<T>::AbstractLinalgSolver() : mMatrix() { 
+AbstractLinalgSolver<T>::AbstractLinalgSolver() : mMatrix(), mError()  { 
 }
 // Destructor 
 template <typename T>
@@ -18,5 +19,8 @@ AbstractLinalgSolver<T>::~AbstractLinalgSolver() {}
 template <typename T>
 void AbstractLinalgSolver<T>::SetMatrix(T  Matrix) { mMatrix = Matrix; }
     
+template <typename T>
+void AbstractLinalgSolver<T>::SetError(double error) { mError = error; }
 
-template class AbstractLinalgSolver<Eigen::MatrixXd>;
+
+template class AbstractLinalgSolver<MatrixXd>;

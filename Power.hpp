@@ -9,6 +9,8 @@
 
 #include "AbstractLinalgSolver.hpp"
 
+using namespace Eigen;
+
 template <typename T>
 class Power : public AbstractLinalgSolver<T> {
 public:
@@ -17,7 +19,7 @@ public:
     virtual ~Power();
 
     //Methods
-    virtual void SolveEquation();
+    virtual double SolveEquation(); 
 
 };
 
