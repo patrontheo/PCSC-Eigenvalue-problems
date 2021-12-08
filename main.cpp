@@ -5,6 +5,7 @@
 #include <Eigen/Dense>
 // #include <cstring>
 #include <stdlib.h>     /* atoi */
+#include "getopt.h"
 
 #include "AbstractLinalgSolver.hpp"
 #include "Power.hpp"
@@ -12,7 +13,7 @@
 #include "LoadCSV.hpp"
 #include "Output.hpp"
 #include "WriteCSV.hpp"
-#include "getopt.h"
+#include "InvPower.hpp"
 
 using namespace Eigen;
 
@@ -128,7 +129,7 @@ int main(int argc, char *argv[])
 
     // Solving
     AbstractLinalgSolver<MatrixXd> *pSolver = 0;
-    pSolver = new Power<MatrixXd>;
+    pSolver = new InvPower<MatrixXd>;
 
 
 
