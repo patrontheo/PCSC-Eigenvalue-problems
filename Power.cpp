@@ -24,6 +24,7 @@ template <typename T>
 double Power<T>::SolveEquation() {
     // Get members 
     T A = this->GetMatrix();
+    // A = A-mu * I;
     double error =this->GetError();
 
     // Initialise intital vector X of size (n x 1)
