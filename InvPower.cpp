@@ -4,24 +4,23 @@
 #include <fstream>
 #include <vector>
 
-#include "Power.hpp"
+#include "InvPower.hpp"
 using namespace Eigen;
 // #include "AbstractLinalgSolver.hpp"
 // shifted power method, where power method is when sigma=0
 
-
 // Constructor
 template <typename T>
-Power<T>::Power() {}
+InvPower<T>::InvPower() {}
 
 // Destructor 
 template <typename T>
-Power<T>::~Power() {}
+InvPower<T>::~InvPower() {}
 
 // Method
 // power method: shifted power method is when B= A-lambda*I is input into the power method
 template <typename T>
-double Power<T>::SolveEquation() {
+double InvPower<T>::SolveEquation() {
     // Get members 
     T A = this->GetMatrix();
     double error =this->GetError();
@@ -40,7 +39,8 @@ double Power<T>::SolveEquation() {
     // Calculate lambda_new, the biggest eigenvalue of A
     while(abs(lambda_old-lambda_new)>error) {
     lambda_old=lambda_new;
-    X_new= A*X; 
+    // Solving Linear system X_new= A^-1*X
+    X_new = A.fullPivLu().solve(X);
     X = X_new;
     lambda_new= X_new.norm();
     X /=lambda_new;
@@ -49,9 +49,10 @@ double Power<T>::SolveEquation() {
      // Find eigenvalue with  Rayleigh quotient
     miu = X.transpose()*A*X;
     return miu;
-}   
+}    
 
 
 
 
-template class Power<MatrixXd>;
+
+template class InvPower<MatrixXd>;
