@@ -80,16 +80,26 @@ int main(int argc, char *argv[])
 
     // Solving
     AbstractLinalgSolver<MatrixXd> *pSolver = 0;
-    pSolver = new InvPower<MatrixXd>;
 
-
+    switch (method)
+    {
+    case 0:
+        pSolver = new Power<MatrixXd>;
+        break;
+    case 1:
+        pSolver = new InvPower<MatrixXd>;
+        break;
+    default:
+        pSolver = new Power<MatrixXd>;
+        break;
+    }
 
     // Set parameters
     pSolver->SetMatrix(mat);
+    pSolver->SetShift(shift);
     pSolver->SetError(0.001);
 
     double eigenvalue = pSolver->SolveEquation();
-    // double eigenvalue = shifted(mat, 1., pSolver);
 
     std::cout << eigenvalue << std::endl;
     delete pSolver;

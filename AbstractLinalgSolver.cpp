@@ -22,5 +22,7 @@ void AbstractLinalgSolver<T>::SetMatrix(T  Matrix) { mMatrix = Matrix; }
 template <typename T>
 void AbstractLinalgSolver<T>::SetError(double error) { mError = error; }
 
+template <typename T>
+void AbstractLinalgSolver<T>::SetShift(double shift) { mShift = shift; }
 
 template class AbstractLinalgSolver<MatrixXd>;
