@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "Power.hpp"
+
 using namespace Eigen;
 
 // shifted power method, where power method is when sigma=0
@@ -23,13 +24,25 @@ Power<T>::~Power() {}
 template <typename T>
 double Power<T>::SolveEquation() {
     // Get members 
-    T A = this->GetMatrix();
+    // T A = this->GetMatrix();
+    T A = this->mMatrix;
+    double shift = this->mShift;
+
     double error =this->GetError();
 
     // Initialise intital vector X of size (n x 1)
-    int n =A.rows();
-    VectorXd X =VectorXd::Random(n, 1);
-    
+    const int n = A.rows();
+    VectorXd X = VectorXd::Random(n, 1);
+
+    // Create identity matrix of appropriate size
+    T I = A;
+    I = I.setIdentity();
+
+    // A = A-mu * I;
+    if (shift > 1e-13){
+        A = A - shift * I;
+    }
+
     //Initialise iterative variables 
     VectorXd X_new;
     double miu=0;

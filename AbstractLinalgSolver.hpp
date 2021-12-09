@@ -21,6 +21,7 @@ public:
 
     // Methods
     void SetMatrix(T Matrix);
+    void SetShift(double shift);
     void SetError(double error);
     T GetMatrix() const { return mMatrix; }
     double GetError() const { return mError; }
@@ -29,6 +30,7 @@ public:
 protected:
     T mMatrix;
     double mError;
+    double mShift;
 };
 
 #endif
