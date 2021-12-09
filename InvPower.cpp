@@ -6,7 +6,7 @@
 
 #include "InvPower.hpp"
 using namespace Eigen;
-// #include "AbstractLinalgSolver.hpp"
+
 // shifted power method, where power method is when sigma=0
 
 // Constructor
@@ -30,24 +30,25 @@ double InvPower<T>::SolveEquation() {
     VectorXd X =VectorXd::Random(n, 1);
     
     //Initialise iterative variables 
-    double lambda_old = 0;
     VectorXd X_new;
-    double lambda_new=1;
-    VectorXd X_new_abs;
     double miu=0;
+    VectorXd e= VectorXd::Random(n, 1);
     // While loop that calculates power method until convergence,
     // Calculate lambda_new, the biggest eigenvalue of A
-    while(abs(lambda_old-lambda_new)>error) {
-    lambda_old=lambda_new;
+    while(e.norm() >error) {
     // Solving Linear system X_new= A^-1*X
     X_new = A.fullPivLu().solve(X);
     X = X_new;
-    lambda_new= X_new.norm();
-    X /=lambda_new;
+    X /=X_new.norm();
 
-    }   
      // Find eigenvalue with  Rayleigh quotient
     miu = X.transpose()*A*X;
+
+    //calculate error 
+    e =A*X-miu*X;
+    }   
+    
+    
     return miu;
 }    
 
