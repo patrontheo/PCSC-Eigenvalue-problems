@@ -12,30 +12,30 @@ using namespace Eigen;
 
 
 // Constructor
-template <typename T>
-Power<T>::Power() {}
+template <typename T1,typename T2,typename T3>
+Power<T1, T2, T3>::Power() {}
 
 // Destructor 
-template <typename T>
-Power<T>::~Power() {}
+template <typename T1,typename T2,typename T3>
+Power<T1, T2, T3>::~Power() {}
 
 // Method
 // power method: shifted power method is when B= A-lambda*I is input into the power method
-template <typename T>
-double Power<T>::SolveEquation() {
+template <typename T1,typename T2,typename T3>
+T2 Power<T1, T2,T3>::SolveEquation() {
+
     // Get members 
     // T A = this->GetMatrix();
-    T A = this->mMatrix;
+    T1 A = this->mMatrix;
     double shift = this->mShift;
-
     double error =this->GetError();
 
     // Initialise intital vector X of size (n x 1)
     const int n = A.rows();
-    VectorXd X = VectorXd::Random(n, 1);
+    T2 X = T2::Random(n,1);
 
     // Create identity matrix of appropriate size
-    T I = A;
+    T1 I = A;
     I = I.setIdentity();
 
     // A = A-mu * I;
@@ -44,9 +44,9 @@ double Power<T>::SolveEquation() {
     }
 
     //Initialise iterative variables 
-    VectorXd X_new;
-    double miu=0;
-    VectorXd e= VectorXd::Random(n, 1);
+    T2 X_new;
+    T3 miu=0;
+    T2 e= T2::Random(n);
     // While loop that calculates power method until convergence,
     // Calculate lambda_new, the biggest eigenvalue of A
     while(e.norm() >error) {
@@ -60,12 +60,13 @@ double Power<T>::SolveEquation() {
     //calculate error 
     e =A*X-miu*X;
     }   
-    
-    
-    return miu;
+    T2 miuvect(1);
+    miuvect<<miu;
+    return miuvect;
+
 }   
 
 
 
 
-template class Power<MatrixXd>;
+template class Power<MatrixXd, VectorXd, double>;

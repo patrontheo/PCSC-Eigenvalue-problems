@@ -8,33 +8,33 @@
 using namespace Eigen;
 
 // Constructor
-template <typename T>
-QR<T>::QR() {}
+template <typename T1,typename T2,typename T3>
+QR<T1,T2,T3>::QR() {}
 
 // Destructor 
-template <typename T>
-QR<T>::~QR() {}
+template <typename T1,typename T2,typename T3>
+QR<T1,T2,T3>::~QR() {}
 
 // Method
 // Shifted QR converges faster
 //
-template <typename T>
-double QR<T>::SolveEquation() {
+template <typename T1,typename T2,typename T3>
+T2 QR<T1,T2,T3>::SolveEquation() {
     // Get members 
-    T A = this->GetMatrix();
+    T1 A = this->GetMatrix();
     double error =this->GetError();
     int n = A.rows();
     // //Initialise iterative variables 
-    T A_new(n,n) ;
-    T Q(n,n);
-    T R(n,n);
-    T e =MatrixXd::Random(n, n);
+    T1 A_new(n,n) ;
+    T1 Q(n,n);
+    T1 R(n,n);
+    T1 e =MatrixXd::Random(n, n);
     //int i=0;
-    VectorXd d = A.diagonal();
-    VectorXd d_new;
+    T2 d = A.diagonal();
+    T2 d_new;
     while(e.norm()>error) {
     //compute QkRk= A(k-1)
-    ColPivHouseholderQR<T> qr(n,n);
+    ColPivHouseholderQR<T1> qr(n,n);
     qr.compute(A);
     Q=qr.matrixQ();
     R=qr.matrixR();
@@ -46,15 +46,11 @@ double QR<T>::SolveEquation() {
     e = d-d_new;
     d=d_new;
     
-    //std::cout << i << std::endl;
-    //i++;
     }   
     
-    std::cout << d << std::endl;
-    std::cout << A << std::endl;
-    return 5.0;
-// Should we return if it was a sucess?
+    return d;
+
 }   
 
 
-template class QR<MatrixXd>;
+template class QR<MatrixXd, VectorXd,double>;
