@@ -56,7 +56,8 @@ T2 InvPower<T1,T2,T3>::SolveEquation() {
 
     double lambdaprime = 1.;
 
-    // LU decomposition
+    // LU decomposition: we do it here to avoid doing it in 
+    // each loop
     FullPivLU<T1> lu(A_shift);
 
     // While loop that calculates power method until convergence,
@@ -70,8 +71,7 @@ T2 InvPower<T1,T2,T3>::SolveEquation() {
         miu = shift + 1 / lambdaprime;
         
         //We normalize the eigenvector
-        X = X_new;
-        X /= X_new.norm();
+        X = X_new / X_new.norm();
 
         //calculate error 
         e = A * X - miu * X;
