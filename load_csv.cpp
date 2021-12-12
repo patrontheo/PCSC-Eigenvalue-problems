@@ -6,7 +6,7 @@
 using namespace Eigen;
 
 template <typename T>
-T LoadCSV<T>::load_data(std::string filename){
+T LoadCSV<T>::LoadData(std::string filename){
 
     std::vector<double> entries;
     std::ifstream inputfile(filename);

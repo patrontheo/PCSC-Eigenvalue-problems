@@ -6,7 +6,7 @@
 template <typename T> 
 class LoadCSV: public Input<T>{
 public:
-    T load_data(std::string filename);
+    T LoadData(std::string filename);
 };
 
 #endif

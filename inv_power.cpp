@@ -23,9 +23,9 @@ InvPower<T1, T2,T3>::~InvPower() {}
 template <typename T1,typename T2,typename T3>
 T2 InvPower<T1,T2,T3>::SolveEquation() {
     // Get members 
-    T1 A = this->mMatrix;
-    double error =this->mError;
-    double shift = this->mShift;
+    T1 matrix_a = this->matrix_;
+    double kError =this->error_;
+    T3 shift = this->shift_;
 
     // Adding a little random number to the shift allow to be able to 
     // compute the eigenvalue even if the shift is exactly the eigenvalue
@@ -34,52 +34,52 @@ T2 InvPower<T1,T2,T3>::SolveEquation() {
     std::uniform_real_distribution<double> distr(-1, 1);    
     shift += distr(eng) / 1e4;
 
-    T1 I = A;
-    I = I.setIdentity();
+    T1 identity = matrix_a;
+    identity = identity.setIdentity();
 
-    T1 A_shift = A;
+    T1 matrix_a_shift = matrix_a;
 
     // A = A-mu * I;
     if (abs(shift) > 1e-13){
-        A_shift = A - shift * I;
+        matrix_a_shift = matrix_a - shift * identity;
     }
 
     // Initialise intital vector X of size (n x 1)
-    int n =A_shift.rows();
-    T2 X =T2::Random(n);
-    X /= X.norm();
+    const int kDim =matrix_a_shift.rows();
+    T2 x_old =T2::Random(kDim);
+    x_old /= x_old.norm();
 
     //Initialise iterative variables 
-    T2 X_new;
-    T3 miu = 0;
-    T2 e = T2::Random(n);
+    T2 x_new;
+    T3 eigenvalue = 0;
+    T2 error = T2::Random(kDim);
 
     double lambdaprime = 1.;
 
     // LU decomposition: we do it here to avoid doing it in 
     // each loop
-    FullPivLU<T1> lu(A_shift);
+    FullPivLU<T1> lu(matrix_a_shift);
 
     // While loop that calculates power method until convergence,
     // Calculate lambda_new, the smallest eigenvalue of A
-    while(e.norm() > error) {
+    while(error.norm() > kError) {
         // Solving Linear system X_new= A^-1*X
-        X_new = lu.solve(X);
+        x_new = lu.solve(x_old);
 
         // Find eigenvalue
-        lambdaprime = X.transpose() * X_new;
-        miu = shift + 1 / lambdaprime;
+        lambdaprime = x_old.transpose() * x_new;
+        eigenvalue = shift + 1 / lambdaprime;
         
         //We normalize the eigenvector
-        X = X_new / X_new.norm();
+        x_old = x_new / x_new.norm();
 
         //calculate error 
-        e = A * X - miu * X;
+        error = matrix_a * x_old - eigenvalue * x_old;
     }   
 
-    T2 miuvect(1);
-    miuvect<<miu;
-    return miuvect;
+    T2 eigenvalue_vect(1);
+    eigenvalue_vect<<eigenvalue;
+    return eigenvalue_vect;
 }    
 
 
