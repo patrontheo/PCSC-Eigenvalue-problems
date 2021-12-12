@@ -7,7 +7,7 @@
 #include <fstream>
 #include <vector>
 
-#include "AbstractLinalgSolver.hpp"
+#include "abstract_linalg_solver.hpp"
 
 using namespace Eigen;
 

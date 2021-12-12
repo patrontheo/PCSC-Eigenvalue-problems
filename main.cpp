@@ -6,13 +6,13 @@
 #include <stdlib.h>     /* atof */
 #include "getopt.h"
 
-#include "AbstractLinalgSolver.hpp"
-#include "Power.hpp"
-#include "Input.hpp"
-#include "LoadCSV.hpp"
-#include "Output.hpp"
-#include "WriteCSV.hpp"
-#include "InvPower.hpp"
+#include "abstract_linalg_solver.hpp"
+#include "power.hpp"
+#include "input.hpp"
+#include "load_csv.hpp"
+#include "output.hpp"
+#include "write_csv.hpp"
+#include "inv_power.hpp"
 #include "qr.hpp"
 
 using namespace Eigen;

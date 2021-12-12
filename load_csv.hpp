@@ -1,7 +1,7 @@
 #ifndef LOADCSVHEADERDEF
 #define LOADCSVHEADERDEF
 
-#include "Input.hpp"
+#include "input.hpp"
 
 template <typename T> 
 class LoadCSV: public Input<T>{
