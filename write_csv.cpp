@@ -6,7 +6,7 @@
 using namespace Eigen;
 
 template <typename T> 
-void WriteCSV<T>::write_data(std::string filename, T data){
+void WriteCSV<T>::WriteData(std::string filename, T data){
     const static IOFormat CSVFormat(StreamPrecision, DontAlignCols, ", ", "\n");
     std::ofstream outputfile(filename.c_str());
     outputfile << data;//.format(CSVFormat);

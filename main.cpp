@@ -108,5 +108,5 @@ int main(int argc, char *argv[])
     std::cout << eigenvalue << std::endl;
     delete ptr_solver;
     //WriteCSV<double> writer;
-    //writer.write_data("../out_mat.csv", eigenvalue);
+    //writer.WriteData("../out_mat.csv", eigenvalue);
 }
