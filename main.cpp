@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
     // Set parameters
     pSolver->SetMatrix(mat);
     pSolver->SetShift(shift);
-    pSolver->SetError(0.0001);
+    pSolver->SetError(0.000001);
 
     VectorXd eigenvalue = pSolver->SolveEquation();
 

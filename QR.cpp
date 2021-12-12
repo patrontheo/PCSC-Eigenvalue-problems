@@ -31,13 +31,14 @@ T2 QR<T1,T2,T3>::SolveEquation() {
     T2 e =T2::Random(n);
     T2 d = A.diagonal();
     T2 d_new;
-    
+
+    HouseholderQR<T1> qr(n,n);
+
     while(e.norm()>error) {
     //compute QkRk= A(k-1)
-    ColPivHouseholderQR<T1> qr(n,n);
     qr.compute(A);
-    Q=qr.matrixQ();
-    R=qr.matrixR(); 
+    Q=qr.householderQ();
+    R=Q.transpose()*A;
     //Reassemble factors Ak=RkQk
     A_new = R*Q;
     A=A_new;
@@ -47,7 +48,7 @@ T2 QR<T1,T2,T3>::SolveEquation() {
     d=d_new;
     
     }   
-    
+    std::cout<<A<<std::endl;;
     return d;
 
 }   
