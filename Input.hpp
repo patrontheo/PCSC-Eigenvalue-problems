@@ -8,7 +8,7 @@
 template <typename T> 
 class Input{
 public:
-    virtual T load_data(std::string filename) = 0;
+    virtual T LoadData(std::string filename) = 0;
 };
 
 #endif

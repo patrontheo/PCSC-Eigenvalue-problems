@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     double shift = 0;
     int method = 0;
 
-    int c;
+    int command;
 
     while (1)
         {
@@ -34,14 +34,14 @@ int main(int argc, char *argv[])
         /* getopt_long stores the option index here. */
         int option_index = 0;
 
-        c = getopt_long (argc, argv, "m:s:",
+        command = getopt_long (argc, argv, "m:s:",
                         long_options, &option_index);
 
         /* Detect the end of the options. */
-        if (c == -1)
+        if (command == -1)
             break;
 
-        switch (c)
+        switch (command)
             {
             case 's':
                 shift = atof(optarg);
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
             case 'm':
                 if(strcmp(optarg, "power") == 0) method = 0;
                 if(strcmp(optarg, "inversepower") == 0) method = 1;
-                if(strcmp(optarg, "QR") == 0) method = 2;
+                if(strcmp(optarg, "qr") == 0) method = 2;
             break;
 
             default:
@@ -73,40 +73,40 @@ int main(int argc, char *argv[])
 
     MatrixXd mat;
     LoadCSV<MatrixXd> loader;
-    mat = loader.load_data("../mat.csv");
+    mat = loader.LoadData("../mat.csv");
     
     std::cout << mat << std::endl;
     // mat(1,1) = 350;    
 
     // Solving
-    AbstractLinalgSolver<MatrixXd, VectorXd,double> *pSolver = 0;
+    AbstractLinalgSolver<MatrixXd, VectorXd,double> *ptr_solver = 0;
 
     switch (method)
     {
     case 0:
-        pSolver = new Power<MatrixXd,VectorXd, double>;
+        ptr_solver = new Power<MatrixXd,VectorXd, double>;
         break;
     case 1:
-        pSolver = new InvPower<MatrixXd,VectorXd, double>;
+        ptr_solver = new InvPower<MatrixXd,VectorXd, double>;
         break;
     case 2:
-        pSolver = new QR<MatrixXd,VectorXd, double>;
+        ptr_solver = new QR<MatrixXd,VectorXd, double>;
         break;
         
     default:
-        pSolver = new Power<MatrixXd,VectorXd, double>;
+        ptr_solver = new Power<MatrixXd,VectorXd, double>;
         break;
     }
 
     // Set parameters
-    pSolver->SetMatrix(mat);
-    pSolver->SetShift(shift);
-    pSolver->SetError(0.0001);
+    ptr_solver->SetMatrix(mat);
+    ptr_solver->SetShift(shift);
+    ptr_solver->SetError(0.0001);
 
-    VectorXd eigenvalue = pSolver->SolveEquation();
+    VectorXd eigenvalue = ptr_solver->SolveEquation();
 
     std::cout << eigenvalue << std::endl;
-    delete pSolver;
+    delete ptr_solver;
     //WriteCSV<double> writer;
     //writer.write_data("../out_mat.csv", eigenvalue);
 }

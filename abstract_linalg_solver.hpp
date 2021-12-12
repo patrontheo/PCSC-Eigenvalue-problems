@@ -20,17 +20,17 @@ public:
     virtual ~AbstractLinalgSolver();
 
     // Methods
-    void SetMatrix(T1 Matrix);
-    void SetShift(double shift);
+    void SetMatrix(T1 matrix);
+    void SetShift(T3 shift);
     void SetError(double error);
-    T1 GetMatrix() const { return mMatrix; }
-    double GetError() const { return mError; }
+    T1 GetMatrix() const { return matrix_; }
+    double GetError() const { return error_; }
     virtual T2 SolveEquation() = 0;
 
 protected:
-    T1 mMatrix;
-    double mError;
-    double mShift;
+    T1 matrix_;
+    double error_;
+    T3 shift_;
 };
 
 #endif

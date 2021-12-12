@@ -23,49 +23,47 @@ Power<T1, T2, T3>::~Power() {}
 // power method: shifted power method is when B= A-lambda*I is input into the power method
 template <typename T1,typename T2,typename T3>
 T2 Power<T1, T2,T3>::SolveEquation() {
-
     // Get members 
-    // T A = this->GetMatrix();
-    T1 A = this->mMatrix;
-    double shift = this->mShift;
-    double error =this->mError;
+    T1 matrix_a = this->matrix_;
+    T3 shift = this->shift_;
+    const double kError =this->error_;
 
     // Initialise intital vector X of size (n x 1)
-    const int n = A.rows();
-    T2 X = T2::Random(n,1);
+    const int kDim = matrix_a.rows();
+    T2 x_old = T2::Random(kDim);
 
     // Create identity matrix of appropriate size
-    T1 I = A;
-    I = I.setIdentity();
+    T1 identity = matrix_a;
+    identity = identity.setIdentity();
 
     // A = A-mu * I;
     if (shift > 1e-13){
-        A = A - shift * I;
+        matrix_a = matrix_a - shift * identity;
     }
 
     //Initialise iterative variables 
-    T2 X_new;
-    T3 miu=0;
-    T2 e= T2::Random(n);
+    T2 x_new;
+    T3 eigenvalue=0;
+    T2 error= T2::Random(kDim);
     // While loop that calculates power method until convergence,
     // Calculate lambda_new, the biggest eigenvalue of A
-    while(e.norm() > error) {
-        X_new= A*X; 
-        X = X_new;
-        X /=X_new.norm();
+    while(error.norm() > kError) {
+        x_new= matrix_a*x_old; 
+        x_old = x_new;
+        x_old /=x_new.norm();
 
         // Find eigenvalue with  Rayleigh quotient
-        miu = X.transpose()*A*X;
+        eigenvalue = x_old.transpose()*matrix_a*x_old;
 
         //calculate error 
-        e =A * X - miu * X;
+        error =matrix_a * x_old - eigenvalue * x_old;
     }   
 
-    miu -= shift;
+    eigenvalue -= shift;
 
-    T2 miuvect(1);
-    miuvect << miu;
-    return miuvect;
+    T2 eigenvalue_vect(1);
+    eigenvalue_vect << eigenvalue;
+    return eigenvalue_vect;
 
 }   
 
