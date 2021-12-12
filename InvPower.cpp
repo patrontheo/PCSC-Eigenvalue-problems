@@ -25,13 +25,13 @@ T2 InvPower<T1,T2,T3>::SolveEquation() {
     // Get members 
     T1 A = this->mMatrix;
     double error =this->mError;
+    double shift = this->mShift;
 
+    // Adding a little random number to the shift allow to be able to 
+    // compute the eigenvalue even if the shift is exactly the eigenvalue
     std::random_device rd;
     std::default_random_engine eng(rd());
     std::uniform_real_distribution<double> distr(-1, 1);    
-    // Adding a little random number to the shift allow to be able to 
-    // compute the eigenvalue even if the shift is exactly the eigenvalue
-    double shift = this->mShift;
     shift += distr(eng) / 1e4;
 
     T1 I = A;
@@ -67,20 +67,7 @@ T2 InvPower<T1,T2,T3>::SolveEquation() {
 
         // Find eigenvalue
         lambdaprime = X.transpose() * X_new;
-
-        // T2 X_ = X_new / X_new.norm();
-        // if ((A_shift * X_new).norm() < 1e-13){
-        //     miu = shift;
-        //     break;
-        // } 
         miu = shift + 1 / lambdaprime;
-        // if (lambdaprime != 0){
-        //     miu = shift + 1 / lambdaprime;
-        // }
-        // else{ // if lambdaprime == 0, then the provided shift is exactly the desired eigenvalue
-        //     miu = shift;
-        //     break;
-        // }
         
         //We normalize the eigenvector
         X = X_new;
