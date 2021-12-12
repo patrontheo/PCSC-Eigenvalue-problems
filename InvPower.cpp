@@ -31,24 +31,27 @@ T2 InvPower<T1,T2,T3>::SolveEquation() {
     
     //Initialise iterative variables 
     T2 X_new;
-    T3 miu=0;
-    T2 e= T2::Random(n);
+    T3 miu_old=0;
+    T3 miu_new=1;
     // While loop that calculates power method until convergence,
     // Calculate lambda_new, the biggest eigenvalue of A
-    while(e.norm() >error) {
+    
+    while(abs(miu_old-miu_new) >error) {
+        miu_old=miu_new;
     // Solving Linear system X_new= A^-1*X
     X_new = A.fullPivLu().solve(X);
     X = X_new;
     X /=X_new.norm();
 
      // Find eigenvalue with  Rayleigh quotient
-    miu = X.transpose()*A*X;
+    miu_new = X.transpose()*A*X;
 
     //calculate error 
-    e =A*X-miu*X;
+    //A*X-miu*X;
+    
     }   
     T2 miuvect(1);
-    miuvect<<miu;
+    miuvect<<miu_new;
     return miuvect;
 }    
 
