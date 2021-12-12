@@ -1,4 +1,4 @@
-#include "WriteCSV.hpp"
+#include "write_csv.hpp"
 #include <vector>
 #include <iostream>
 #include <fstream>

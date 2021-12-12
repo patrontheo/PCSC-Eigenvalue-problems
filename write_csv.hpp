@@ -1,7 +1,7 @@
 #ifndef WRITECSVHEADERDEF
 #define WRITECSVHEADERDEF
 
-#include "Output.hpp"
+#include "output.hpp"
 using namespace Eigen;
 
 template <typename T> 
