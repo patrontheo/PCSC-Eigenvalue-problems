@@ -4,7 +4,7 @@
 #include <fstream>
 #include <vector>
 
-#include "QR.hpp"
+#include "qr.hpp"
 using namespace Eigen;
 
 // Constructor

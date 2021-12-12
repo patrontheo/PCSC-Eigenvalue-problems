@@ -13,7 +13,7 @@
 #include "Output.hpp"
 #include "WriteCSV.hpp"
 #include "InvPower.hpp"
-#include "QR.hpp"
+#include "qr.hpp"
 
 using namespace Eigen;
 
