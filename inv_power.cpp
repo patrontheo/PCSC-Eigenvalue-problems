@@ -5,7 +5,7 @@
 #include <vector>
 #include <random>
 
-#include "InvPower.hpp"
+#include "inv_power.hpp"
 using namespace Eigen;
 
 // shifted power method, where power method is when sigma=0

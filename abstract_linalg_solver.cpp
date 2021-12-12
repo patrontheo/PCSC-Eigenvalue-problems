@@ -1,4 +1,4 @@
-#include "AbstractLinalgSolver.hpp"
+#include "abstract_linalg_solver.hpp"
 #include <string>
 #include <iostream>
 #include <fstream>

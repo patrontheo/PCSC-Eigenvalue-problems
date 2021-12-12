@@ -4,7 +4,7 @@
 #include <fstream>
 #include <vector>
 
-#include "Power.hpp"
+#include "power.hpp"
 
 using namespace Eigen;
 
