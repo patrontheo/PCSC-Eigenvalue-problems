@@ -28,7 +28,7 @@ T2 Power<T1, T2,T3>::SolveEquation() {
     // T A = this->GetMatrix();
     T1 A = this->mMatrix;
     double shift = this->mShift;
-    double error =this->GetError();
+    double error =this->mError;
 
     // Initialise intital vector X of size (n x 1)
     const int n = A.rows();
@@ -49,19 +49,22 @@ T2 Power<T1, T2,T3>::SolveEquation() {
     T2 e= T2::Random(n);
     // While loop that calculates power method until convergence,
     // Calculate lambda_new, the biggest eigenvalue of A
-    while(e.norm() >error) {
-    X_new= A*X; 
-    X = X_new;
-    X /=X_new.norm();
+    while(e.norm() > error) {
+        X_new= A*X; 
+        X = X_new;
+        X /=X_new.norm();
 
-     // Find eigenvalue with  Rayleigh quotient
-    miu = X.transpose()*A*X;
+        // Find eigenvalue with  Rayleigh quotient
+        miu = X.transpose()*A*X;
 
-    //calculate error 
-    e =A*X-miu*X;
+        //calculate error 
+        e =A * X - miu * X;
     }   
+
+    miu -= shift;
+
     T2 miuvect(1);
-    miuvect<<miu;
+    miuvect << miu;
     return miuvect;
 
 }   
