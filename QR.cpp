@@ -33,22 +33,24 @@ T2 QR<T1,T2,T3>::SolveEquation() {
     T2 e = T2::Random(n);
     T2 d = A.diagonal();
     T2 d_new;
-    Eigen::FullPivHouseholderQR<Eigen::MatrixXd> fullPivHouseholderQR(A.rows(), A.cols());
+
+    HouseholderQR<T1> qr(n,n);
+
     while(e.norm()>error) {
-        //compute QkRk= A(k-1)
-        fullPivHouseholderQR.compute(A);
-        Q=fullPivHouseholderQR.matrixQ();
-        R=fullPivHouseholderQR.matrixQR().template  triangularView<Eigen::Upper>();
- 
-        //Reassemble factors Ak=RkQk
-        A_new = R*Q;
-        A = A_new;
-        d_new = A.diagonal();
-        //calculate error
-        e = d - d_new;
-        d = d_new;
-    }   
+    //compute QkRk= A(k-1)
+    qr.compute(A);
+    Q=qr.householderQ();
+    R=Q.transpose()*A;
+    //Reassemble factors Ak=RkQk
+    A_new = R*Q;
+    A=A_new;
+    d_new = A.diagonal();
+    //calculate error
+    e = d-d_new;
+    d=d_new;
     
+    }   
+    std::cout<<A<<std::endl;;
     return d;
 
 }   
