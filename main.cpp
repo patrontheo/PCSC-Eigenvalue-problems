@@ -13,9 +13,9 @@
 #include "Output.hpp"
 #include "WriteCSV.hpp"
 #include "InvPower.hpp"
+#include "QR.hpp"
 
 using namespace Eigen;
-
 
 int main(int argc, char *argv[])
 {   
@@ -79,18 +79,22 @@ int main(int argc, char *argv[])
     // mat(1,1) = 350;    
 
     // Solving
-    AbstractLinalgSolver<MatrixXd> *pSolver = 0;
+    AbstractLinalgSolver<MatrixXd, VectorXd,double> *pSolver = 0;
 
     switch (method)
     {
     case 0:
-        pSolver = new Power<MatrixXd>;
+        pSolver = new Power<MatrixXd,VectorXd, double>;
         break;
     case 1:
-        pSolver = new InvPower<MatrixXd>;
+        pSolver = new InvPower<MatrixXd,VectorXd, double>;
         break;
+    case 2:
+        pSolver = new QR<MatrixXd,VectorXd, double>;
+        break;
+        
     default:
-        pSolver = new Power<MatrixXd>;
+        pSolver = new Power<MatrixXd,VectorXd, double>;
         break;
     }
 
@@ -99,10 +103,10 @@ int main(int argc, char *argv[])
     pSolver->SetShift(shift);
     pSolver->SetError(0.001);
 
-    double eigenvalue = pSolver->SolveEquation();
+    VectorXd eigenvalue = pSolver->SolveEquation();
 
     std::cout << eigenvalue << std::endl;
     delete pSolver;
-    WriteCSV<double> writer;
-    writer.write_data("../out_mat.csv", eigenvalue);
+    //WriteCSV<double> writer;
+    //writer.write_data("../out_mat.csv", eigenvalue);
 }

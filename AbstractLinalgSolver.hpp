@@ -11,7 +11,7 @@
 
 using namespace Eigen;
 
-template <typename T> 
+template <typename T1, typename T2,typename T3> 
 class AbstractLinalgSolver{
 public:
 
@@ -20,15 +20,15 @@ public:
     virtual ~AbstractLinalgSolver();
 
     // Methods
-    void SetMatrix(T Matrix);
+    void SetMatrix(T1 Matrix);
     void SetShift(double shift);
     void SetError(double error);
-    T GetMatrix() const { return mMatrix; }
+    T1 GetMatrix() const { return mMatrix; }
     double GetError() const { return mError; }
-    virtual double SolveEquation() = 0;
+    virtual T2 SolveEquation() = 0;
 
 protected:
-    T mMatrix;
+    T1 mMatrix;
     double mError;
     double mShift;
 };

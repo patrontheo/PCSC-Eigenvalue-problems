@@ -8,21 +8,21 @@
 using namespace Eigen;
 
 // Constructor
-template <typename T>
-AbstractLinalgSolver<T>::AbstractLinalgSolver() : mMatrix(), mError()  { 
+template <typename T1,typename T2,typename T3>
+AbstractLinalgSolver<T1,T2,T3>::AbstractLinalgSolver() : mMatrix(), mError()  { 
 }
 // Destructor 
-template <typename T>
-AbstractLinalgSolver<T>::~AbstractLinalgSolver() {}
+template <typename T1,typename T2,typename T3>
+AbstractLinalgSolver<T1, T2,T3>::~AbstractLinalgSolver() {}
 
 // Method
-template <typename T>
-void AbstractLinalgSolver<T>::SetMatrix(T  Matrix) { mMatrix = Matrix; }
+template <typename T1,typename T2,typename T3>
+void AbstractLinalgSolver<T1, T2, T3>::SetMatrix(T1  Matrix) { mMatrix = Matrix; }
     
-template <typename T>
-void AbstractLinalgSolver<T>::SetError(double error) { mError = error; }
+template <typename T1,typename T2,typename T3>
+void AbstractLinalgSolver<T1, T2, T3>::SetError(double error) { mError = error; }
 
-template <typename T>
-void AbstractLinalgSolver<T>::SetShift(double shift) { mShift = shift; }
+template <typename T1,typename T2,typename T3>
+void AbstractLinalgSolver<T1, T2, T3>::SetShift(double shift) { mShift = shift; }
 
-template class AbstractLinalgSolver<MatrixXd>;
+template class AbstractLinalgSolver<MatrixXd, VectorXd, double>;

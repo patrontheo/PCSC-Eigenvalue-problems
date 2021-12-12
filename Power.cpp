@@ -7,35 +7,35 @@
 #include "Power.hpp"
 
 using namespace Eigen;
-// #include "AbstractLinalgSolver.hpp"
+
 // shifted power method, where power method is when sigma=0
 
 
 // Constructor
-template <typename T>
-Power<T>::Power() {}
+template <typename T1,typename T2,typename T3>
+Power<T1, T2, T3>::Power() {}
 
 // Destructor 
-template <typename T>
-Power<T>::~Power() {}
+template <typename T1,typename T2,typename T3>
+Power<T1, T2, T3>::~Power() {}
 
 // Method
 // power method: shifted power method is when B= A-lambda*I is input into the power method
-template <typename T>
-double Power<T>::SolveEquation() {
+template <typename T1,typename T2,typename T3>
+T2 Power<T1, T2,T3>::SolveEquation() {
+
     // Get members 
     // T A = this->GetMatrix();
-    T A = this->mMatrix;
+    T1 A = this->mMatrix;
     double shift = this->mShift;
-
     double error =this->GetError();
 
     // Initialise intital vector X of size (n x 1)
     const int n = A.rows();
-    VectorXd X = VectorXd::Random(n, 1);
+    T2 X = T2::Random(n,1);
 
     // Create identity matrix of appropriate size
-    T I = A;
+    T1 I = A;
     I = I.setIdentity();
 
     // A = A-mu * I;
@@ -44,26 +44,29 @@ double Power<T>::SolveEquation() {
     }
 
     //Initialise iterative variables 
-    double lambda_old = 0;
-    VectorXd X_new;
-    double lambda_new = 1;
-    VectorXd X_new_abs;
-    double miu = 0;
+    T2 X_new;
+    T3 miu=0;
+    T2 e= T2::Random(n);
     // While loop that calculates power method until convergence,
     // Calculate lambda_new, the biggest eigenvalue of A
-    while(abs(lambda_old - lambda_new) > error) {
-        lambda_old = lambda_new;
-        X_new = A * X; 
-        X = X_new;
-        lambda_new = X_new.norm();
-        X /= lambda_new;
-    }   
+    while(e.norm() >error) {
+    X_new= A*X; 
+    X = X_new;
+    X /=X_new.norm();
+
      // Find eigenvalue with  Rayleigh quotient
-    miu = X.transpose() * A * X;
-    return miu;
+    miu = X.transpose()*A*X;
+
+    //calculate error 
+    e =A*X-miu*X;
+    }   
+    T2 miuvect(1);
+    miuvect<<miu;
+    return miuvect;
+
 }   
 
 
 
 
-template class Power<MatrixXd>;
+template class Power<MatrixXd, VectorXd, double>;
