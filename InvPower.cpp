@@ -78,7 +78,7 @@ T2 InvPower<T1,T2,T3>::SolveEquation() {
     }   
 
     T2 miuvect(1);
-    miuvect<<miu_new;
+    miuvect<<miu;
     return miuvect;
 }    
 
