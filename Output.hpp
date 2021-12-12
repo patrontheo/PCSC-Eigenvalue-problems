@@ -10,7 +10,7 @@ using namespace Eigen;
 template <typename T> 
 class Output{
 public:
-    virtual void write_data(std::string filename, T data) = 0;
+    virtual void WriteData(std::string filename, T data) = 0;
 };
 
 
