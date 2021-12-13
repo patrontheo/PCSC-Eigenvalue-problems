@@ -106,7 +106,9 @@ int main(int argc, char *argv[])
     VectorXd eigenvalue = ptr_solver->SolveEquation();
 
     std::cout << eigenvalue << std::endl;
+    
     delete ptr_solver;
-    //WriteCSV<double> writer;
-    //writer.WriteData("../out_mat.csv", eigenvalue);
+
+    WriteCSV<VectorXd> writer;
+    writer.WriteData("../data/out_vec.csv", eigenvalue);
 }
