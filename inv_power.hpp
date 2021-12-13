@@ -13,9 +13,9 @@ using namespace Eigen;
 /**
  * @brief Daughter Class of AbstractlinalgSolver.
  * Class implementing the inverse power method
- * @tparam Matrix 
- * @tparam Vector 
- * @tparam Scalar 
+ * @tparam Matrix is the templated parameter for matrices in the algorithm
+ * @tparam Vector is the templated parameter for vectors in the algorithm
+ * @tparam Scalar is the templated parameter for scalars in the algorithm
  */
 
 template <typename Matrix,typename Vector,typename Scalar>
