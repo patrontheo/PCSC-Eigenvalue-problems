@@ -20,7 +20,9 @@ using namespace Eigen;
 int main(int argc, char *argv[])
 {   
     double shift = 0;
-    int method = 0;
+    double error = 0.0001;
+    std::string method = "power";
+    std::string filename = "../data/mat.csv";
 
     int command;
 
@@ -29,12 +31,14 @@ int main(int argc, char *argv[])
         static struct option long_options[] =
             {
             {"method",   required_argument,       0, 'm'},
-            {"shift",   required_argument,       0, 's'}
+            {"shift",   required_argument,       0, 's'},
+            {"filename",   required_argument,       0, 'f'},
+            {"error",   required_argument,       0, 'e'}
             };
         /* getopt_long stores the option index here. */
         int option_index = 0;
 
-        command = getopt_long (argc, argv, "m:s:",
+        command = getopt_long (argc, argv, "m:s:f:e:",
                         long_options, &option_index);
 
         /* Detect the end of the options. */
@@ -48,9 +52,16 @@ int main(int argc, char *argv[])
             break;
 
             case 'm':
-                if(strcmp(optarg, "power") == 0) method = 0;
-                if(strcmp(optarg, "inversepower") == 0) method = 1;
-                if(strcmp(optarg, "qr") == 0) method = 2;
+                method = optarg;
+            break;
+
+            case 'f':
+                filename = optarg;
+                filename = "../data/" + filename;
+            break;
+
+            case 'e':
+                error = atof(optarg);
             break;
 
             default:
@@ -66,49 +77,39 @@ int main(int argc, char *argv[])
             printf ("%s ", argv[optind++]);
         putchar ('\n');
         }
-
-
-    std::cout << "method: " << method << std::endl;
-    std::cout << "shift: " << shift << std::endl;
+    
 
     MatrixXd mat;
     LoadCSV<MatrixXd> loader;
-    mat = loader.LoadData("../data/mat.csv");
-    
-    std::cout << mat << std::endl;
-    // mat(1,1) = 350;    
+    mat = loader.LoadData(filename);
 
     // Solving
     AbstractLinalgSolver<MatrixXd, VectorXd,double> *ptr_solver = 0;
 
-    switch (method)
-    {
-    case 0:
+    if (strcmp(method.c_str(), "inversepower") == 0) ptr_solver = new InvPower<MatrixXd,VectorXd, double>;
+    else if (strcmp(method.c_str(), "qr") == 0) ptr_solver = new QR<MatrixXd,VectorXd, double>;
+    else {
         ptr_solver = new Power<MatrixXd,VectorXd, double>;
-        break;
-    case 1:
-        ptr_solver = new InvPower<MatrixXd,VectorXd, double>;
-        break;
-    case 2:
-        ptr_solver = new QR<MatrixXd,VectorXd, double>;
-        break;
-        
-    default:
-        ptr_solver = new Power<MatrixXd,VectorXd, double>;
-        break;
+        method = "power";
     }
+
+    std::cout << "filename: " << filename << std::endl;
+    std::cout << "method: " << method << std::endl;
+    std::cout << "shift: " << shift << std::endl;
+    std::cout << "error: " << error << std::endl;
+    std::cout << "input matrix:" << std::endl << mat << std::endl;
 
     // Set parameters
     ptr_solver->SetMatrix(mat);
     ptr_solver->SetShift(shift);
-    ptr_solver->SetError(0.0001);
+    ptr_solver->SetError(error);
 
     VectorXd eigenvalue = ptr_solver->SolveEquation();
 
-    std::cout << eigenvalue << std::endl;
+    std::cout << "eigenvalue(s):" << std::endl << eigenvalue << std::endl;
     
     delete ptr_solver;
 
     WriteCSV<VectorXd> writer;
-    writer.WriteData("../data/out_vec.csv", eigenvalue);
+    writer.WriteData("../data/eigenvalues.csv", eigenvalue);
 }
