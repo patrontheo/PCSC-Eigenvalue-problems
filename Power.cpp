@@ -8,7 +8,7 @@
 
 using namespace Eigen;
 
-// shifted power method, where power method is when sigma=0
+
 
 
 // Constructor
