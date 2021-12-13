@@ -5,7 +5,7 @@ include_directories(eigen)
 set(CMAKE_CXX_STANDARD 17)
 # set(CMAKE_CXX_FLAGS "-DNDEBUG")
 
-add_executable(main main.cpp abstract_linalg_solver.cpp power.cpp load_csv.cpp write_csv.cpp inv_power.cpp qr.cpp) 
+add_executable(main src/main.cpp src/abstract_linalg_solver.cpp src/power.cpp src/load_csv.cpp src/write_csv.cpp src/inv_power.cpp src/qr.cpp) 
 
 # add_subdirectory(googletest)
 # add_executable(test_pcsc test/test.cc)

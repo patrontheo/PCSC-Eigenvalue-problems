@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
 
     MatrixXd mat;
     LoadCSV<MatrixXd> loader;
-    mat = loader.LoadData("../mat.csv");
+    mat = loader.LoadData("../data/mat.csv");
     
     std::cout << mat << std::endl;
     // mat(1,1) = 350;    
