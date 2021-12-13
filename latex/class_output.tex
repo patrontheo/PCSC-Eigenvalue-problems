@@ -1,0 +1,64 @@
+\hypertarget{class_output}{}\doxysection{Output\texorpdfstring{$<$}{<} Matrix \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_output}\index{Output$<$ Matrix $>$@{Output$<$ Matrix $>$}}
+
+
+Abstract super-\/class for writing eigenvalues. This class contain only the method Write\+Data which write the eigenvalues to output file.  
+
+
+
+
+{\ttfamily \#include $<$output.\+hpp$>$}
+
+Inheritance diagram for Output\texorpdfstring{$<$}{<} Matrix \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_output}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_output_a8833a23a7c79e4d2441c0095bd5a4e97}{Write\+Data}} (std\+::string filename, Matrix data)=0
+\begin{DoxyCompactList}\small\item\em Virtual pure method for writing eigenvalues. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Matrix$>$\newline
+class Output$<$ Matrix $>$}
+Abstract super-\/class for writing eigenvalues. This class contain only the method Write\+Data which write the eigenvalues to output file. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Vector} & the vector of found eigenvalues \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_output_a8833a23a7c79e4d2441c0095bd5a4e97}\label{class_output_a8833a23a7c79e4d2441c0095bd5a4e97}} 
+\index{Output$<$ Matrix $>$@{Output$<$ Matrix $>$}!WriteData@{WriteData}}
+\index{WriteData@{WriteData}!Output$<$ Matrix $>$@{Output$<$ Matrix $>$}}
+\doxysubsubsection{\texorpdfstring{WriteData()}{WriteData()}}
+{\footnotesize\ttfamily template$<$typename Matrix $>$ \\
+virtual void \mbox{\hyperlink{class_output}{Output}}$<$ Matrix $>$\+::Write\+Data (\begin{DoxyParamCaption}\item[{std\+::string}]{filename,  }\item[{Matrix}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Virtual pure method for writing eigenvalues. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & name of the created output file \\
+\hline
+{\em data} & Vector of eigenvalues to write in the file \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_write_c_s_v_a5f920f238db6e0565ab4ff53da795ea5}{Write\+CSV$<$ Matrix $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+output.\+hpp\end{DoxyCompactItemize}

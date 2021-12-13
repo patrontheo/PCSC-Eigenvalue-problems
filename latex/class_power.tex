@@ -1,0 +1,95 @@
+\hypertarget{class_power}{}\doxysection{Power\texorpdfstring{$<$}{<} Matrix, Vector, Scalar \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_power}\index{Power$<$ Matrix, Vector, Scalar $>$@{Power$<$ Matrix, Vector, Scalar $>$}}
+
+
+Daughter class of \mbox{\hyperlink{class_abstract_linalg_solver}{Abstract\+Linalg\+Solver}}. Class implementing the power method.  
+
+
+
+
+{\ttfamily \#include $<$power.\+hpp$>$}
+
+Inheritance diagram for Power\texorpdfstring{$<$}{<} Matrix, Vector, Scalar \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_power}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_power_a88a149b8c92a1662b92bfd77bc808843}{Power}} ()
+\begin{DoxyCompactList}\small\item\em A constructor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_power_a1463cc6ff48bf9aa913ee430ce5998bb}{$\sim$\+Power}} ()
+\begin{DoxyCompactList}\small\item\em A destructor. \end{DoxyCompactList}\item 
+virtual Vector \mbox{\hyperlink{class_power_aec4dcf1aa834937c8aac20cf90dc3564}{Solve\+Equation}} ()
+\begin{DoxyCompactList}\small\item\em A method function that solves the largest eigenvalue with the power method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Matrix, typename Vector, typename Scalar$>$\newline
+class Power$<$ Matrix, Vector, Scalar $>$}
+Daughter class of \mbox{\hyperlink{class_abstract_linalg_solver}{Abstract\+Linalg\+Solver}}. Class implementing the power method. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Matrix} & is the templated parameter for matrices in the algorithm \\
+\hline
+{\em Vector} & is the templated parameter for vectors in the algorithm \\
+\hline
+{\em Scalar} & is the templated parameter for scalars in the algorithm \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_power_a88a149b8c92a1662b92bfd77bc808843}\label{class_power_a88a149b8c92a1662b92bfd77bc808843}} 
+\index{Power$<$ Matrix, Vector, Scalar $>$@{Power$<$ Matrix, Vector, Scalar $>$}!Power@{Power}}
+\index{Power@{Power}!Power$<$ Matrix, Vector, Scalar $>$@{Power$<$ Matrix, Vector, Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{Power()}{Power()}}
+{\footnotesize\ttfamily template$<$typename Matrix , typename Vector , typename Scalar $>$ \\
+\mbox{\hyperlink{class_power}{Power}}$<$ Matrix, Vector, Scalar $>$\+::\mbox{\hyperlink{class_power}{Power}}}
+
+
+
+A constructor. 
+
+Constructs the \mbox{\hyperlink{class_power}{Power}} class instance. \mbox{\Hypertarget{class_power_a1463cc6ff48bf9aa913ee430ce5998bb}\label{class_power_a1463cc6ff48bf9aa913ee430ce5998bb}} 
+\index{Power$<$ Matrix, Vector, Scalar $>$@{Power$<$ Matrix, Vector, Scalar $>$}!````~Power@{$\sim$Power}}
+\index{````~Power@{$\sim$Power}!Power$<$ Matrix, Vector, Scalar $>$@{Power$<$ Matrix, Vector, Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$Power()}{~Power()}}
+{\footnotesize\ttfamily template$<$typename Matrix , typename Vector , typename Scalar $>$ \\
+\mbox{\hyperlink{class_power}{Power}}$<$ Matrix, Vector, Scalar $>$\+::$\sim$\mbox{\hyperlink{class_power}{Power}}\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+A destructor. 
+
+Destructs the \mbox{\hyperlink{class_power}{Power}} class instance. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_power_aec4dcf1aa834937c8aac20cf90dc3564}\label{class_power_aec4dcf1aa834937c8aac20cf90dc3564}} 
+\index{Power$<$ Matrix, Vector, Scalar $>$@{Power$<$ Matrix, Vector, Scalar $>$}!SolveEquation@{SolveEquation}}
+\index{SolveEquation@{SolveEquation}!Power$<$ Matrix, Vector, Scalar $>$@{Power$<$ Matrix, Vector, Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{SolveEquation()}{SolveEquation()}}
+{\footnotesize\ttfamily template$<$typename Matrix , typename Vector , typename Scalar $>$ \\
+Vector \mbox{\hyperlink{class_power}{Power}}$<$ Matrix, Vector, Scalar $>$\+::Solve\+Equation\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+A method function that solves the largest eigenvalue with the power method. 
+
+\begin{DoxyReturn}{Returns}
+The largest eigenvalue as a vector of one element 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_abstract_linalg_solver_a5448aaceecfd3525e4f980ab5d9a21e5}{Abstract\+Linalg\+Solver$<$ Matrix, Vector, Scalar $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+power.\+hpp\item 
+power.\+cpp\end{DoxyCompactItemize}

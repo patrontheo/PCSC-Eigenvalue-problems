@@ -6,7 +6,7 @@
 #include <Eigen/Dense>
 
 /**
- * @brief Abstract super-class for loading input matrix
+ * @brief Abstract super-class for loading input matrix.
  * This class contain only the method LoadData which returns
  * the loaded matrix
  * @tparam Matrix is the templated parameter for input matrix

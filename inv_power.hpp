@@ -11,8 +11,8 @@
 using namespace Eigen;
 
 /**
- * @brief Daughter Class of AbstractlinalgSolver
- * Finds the smallest eigenvalue of the member matrix
+ * @brief Daughter Class of AbstractlinalgSolver.
+ * Class implementing the inverse power method
  * @tparam Matrix 
  * @tparam Vector 
  * @tparam Scalar 
@@ -24,19 +24,19 @@ public:
     // Constructor and destructor
     //! A constructor.
     /*!
-    Constructs the InvPower class.
+    Constructs the InvPower class instance.
     */
     InvPower();
     //! A destructor.
     /*!
-    Destructs the InvPower class.
+    Destructs the InvPower class instance.
     */
     virtual ~InvPower();
 
     // Methods
-     //! A method function that solves the smallest eigenvalue with the inverse power method
+     //! A method function that returns the smallest eigenvalue with the inverse power method
     /*!
-    \return The smallest eigenvalue in vector form
+    \return The smallest eigenvalue as a vector of one element
     */
     virtual Vector SolveEquation(); 
 

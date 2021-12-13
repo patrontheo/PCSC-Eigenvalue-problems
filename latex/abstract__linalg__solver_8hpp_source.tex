@@ -1,0 +1,54 @@
+\hypertarget{abstract__linalg__solver_8hpp_source}{}\doxysection{abstract\+\_\+linalg\+\_\+solver.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#ifndef ABSTRACTLINALGSOLVERHEADERDEF}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#define ABSTRACTLINALGSOLVERHEADERDEF}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <Eigen/Dense>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{using namespace }Eigen;}
+\DoxyCodeLine{20 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Matrix, \textcolor{keyword}{typename} Vector,\textcolor{keyword}{typename} Scalar> }
+\DoxyCodeLine{21 \textcolor{keyword}{class }\mbox{\hyperlink{class_abstract_linalg_solver}{AbstractLinalgSolver}}\{}
+\DoxyCodeLine{22 \textcolor{keyword}{public}:}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{comment}{// Constructor and destructor}}
+\DoxyCodeLine{26 \textcolor{comment}{}}
+\DoxyCodeLine{29     \mbox{\hyperlink{class_abstract_linalg_solver_a33ae2ffc8cb39262a8177cd7d5179996}{AbstractLinalgSolver}}();}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{34     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_abstract_linalg_solver_ab9d36810a8601a959bd1eb53cc0cca27}{\string~AbstractLinalgSolver}}();}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \textcolor{comment}{// Methods}}
+\DoxyCodeLine{38 \textcolor{comment}{}}
+\DoxyCodeLine{41     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_abstract_linalg_solver_a3e54d47bb3c532aaa8414ab99b512147}{SetMatrix}}(Matrix matrix);}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{44 }
+\DoxyCodeLine{47     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_abstract_linalg_solver_affae41a6df9ddcd286d3d3168af89381}{SetShift}}(Scalar shift);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{50 }
+\DoxyCodeLine{53     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_abstract_linalg_solver_a997d41d8b420c337816cd242ea9d55b6}{SetError}}(\textcolor{keywordtype}{double} error);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{56 }
+\DoxyCodeLine{59     Matrix \mbox{\hyperlink{class_abstract_linalg_solver_a9455ca79985fc61ce0265d4d4bdd500c}{GetMatrix}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_abstract_linalg_solver_ab530dd9c6d485982172300f7778a652a}{matrix\_}}; \}}
+\DoxyCodeLine{60     }
+\DoxyCodeLine{61     }
+\DoxyCodeLine{63 }
+\DoxyCodeLine{66     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_abstract_linalg_solver_a5617d398aa353c83cc968eae008a81ac}{GetError}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_abstract_linalg_solver_a44e3ca8ff5403776213d90ebb398af84}{error\_}}; \}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{69 }
+\DoxyCodeLine{72     \textcolor{keyword}{virtual} Vector \mbox{\hyperlink{class_abstract_linalg_solver_a5448aaceecfd3525e4f980ab5d9a21e5}{SolveEquation}}() = 0;}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{75     Matrix \mbox{\hyperlink{class_abstract_linalg_solver_ab530dd9c6d485982172300f7778a652a}{matrix\_}}; }
+\DoxyCodeLine{76     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_abstract_linalg_solver_a44e3ca8ff5403776213d90ebb398af84}{error\_}}; }
+\DoxyCodeLine{77     Scalar \mbox{\hyperlink{class_abstract_linalg_solver_abca436bd7f12f01f96bd93de3208f08d}{shift\_}}; }
+\DoxyCodeLine{78 \};}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

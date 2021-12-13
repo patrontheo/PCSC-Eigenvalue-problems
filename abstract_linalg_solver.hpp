@@ -24,48 +24,48 @@ public:
     // Constructor and destructor
     //! A constructor.
     /*!
-    Constructs the AbstractLinalgSolver class.
+    Constructs the AbstractLinalgSolver class instance.
     */
     AbstractLinalgSolver();
     //! A destructor.
     /*!
-    Destructs the AbstractLinalgSolver class.
+    Destructs the AbstractLinalgSolver class instance.
     */
     virtual ~AbstractLinalgSolver();
 
     // Methods
-    //! A method taking a matrix and returning a void.
+    //! Set the member matrix_.
     /*!
-    \param matrix a matrix argument
+    \param matrix a Matrix argument
     */
     void SetMatrix(Matrix matrix);
 
-    //! A method taking a scalar and returning a void.
+    //! Set the member shift_.
     /*!
-    \param shift a scalar argument
+    \param shift a Scalar argument
     */
     void SetShift(Scalar shift);
 
-    //! A method taking a double and returning a void.
+    //! Set the member error_.
     /*!
     \param error a double argument
     */
     void SetError(double error);
 
-    //! A method taking no argument and returning a matrix.
+    //! Returns the member matrix_
     /*!
     \return The member matrix
     */
     Matrix GetMatrix() const { return matrix_; }
     
     
-    //! A method taking no argument and returning the threshold error.
+    //! returns the member error_
     /*!
     \return The member error
     */
     double GetError() const { return error_; }
 
-    //! A pure virtual member.
+    //! A pure virtual method defined in sub classes.
     /*!
     \return returns a vector
     */
@@ -74,7 +74,7 @@ public:
 protected:
     Matrix matrix_; /*!< The matrix used to find the eigenvalues*/
     double error_; /*!< The threshold used to end the algorithms solving for the eigenvalues */
-    Scalar shift_; /*!< A scalar containing the value of shift to be applied in the inverse power method */
+    Scalar shift_; /*!< A scalar containing the value of the shift to be used in the shifted inverse power method */
 };
 
 #endif

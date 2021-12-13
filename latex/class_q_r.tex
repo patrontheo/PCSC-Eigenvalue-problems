@@ -1,0 +1,95 @@
+\hypertarget{class_q_r}{}\doxysection{QR\texorpdfstring{$<$}{<} Matrix, Vector, Scalar \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_q_r}\index{QR$<$ Matrix, Vector, Scalar $>$@{QR$<$ Matrix, Vector, Scalar $>$}}
+
+
+Daughter class of \mbox{\hyperlink{class_abstract_linalg_solver}{Abstract\+Linalg\+Solver}}. Class implementing the \mbox{\hyperlink{class_q_r}{QR}} algorithm.  
+
+
+
+
+{\ttfamily \#include $<$qr.\+hpp$>$}
+
+Inheritance diagram for QR\texorpdfstring{$<$}{<} Matrix, Vector, Scalar \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_q_r}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_q_r_a01e38bd9b47cd3f72e9fe41157b9b0f7}{QR}} ()
+\begin{DoxyCompactList}\small\item\em A constructor. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_q_r_a878102a10436aaf86048d4f412fa4268}{$\sim$\+QR}} ()
+\begin{DoxyCompactList}\small\item\em A destructor. \end{DoxyCompactList}\item 
+virtual Vector \mbox{\hyperlink{class_q_r_aaaae7d8323339437e10a6ef854b03365}{Solve\+Equation}} ()
+\begin{DoxyCompactList}\small\item\em A method function that solves for all eigenvalues with the \mbox{\hyperlink{class_q_r}{QR}} method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Matrix, typename Vector, typename Scalar$>$\newline
+class QR$<$ Matrix, Vector, Scalar $>$}
+Daughter class of \mbox{\hyperlink{class_abstract_linalg_solver}{Abstract\+Linalg\+Solver}}. Class implementing the \mbox{\hyperlink{class_q_r}{QR}} algorithm. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Matrix} & is the templated parameter for matrices in the algorithm \\
+\hline
+{\em Vector} & is the templated parameter for vectors in the algorithm \\
+\hline
+{\em Scalar} & is the templated parameter for scalars in the algorithm \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_q_r_a01e38bd9b47cd3f72e9fe41157b9b0f7}\label{class_q_r_a01e38bd9b47cd3f72e9fe41157b9b0f7}} 
+\index{QR$<$ Matrix, Vector, Scalar $>$@{QR$<$ Matrix, Vector, Scalar $>$}!QR@{QR}}
+\index{QR@{QR}!QR$<$ Matrix, Vector, Scalar $>$@{QR$<$ Matrix, Vector, Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{QR()}{QR()}}
+{\footnotesize\ttfamily template$<$typename Matrix , typename Vector , typename Scalar $>$ \\
+\mbox{\hyperlink{class_q_r}{QR}}$<$ Matrix, Vector, Scalar $>$\+::\mbox{\hyperlink{class_q_r}{QR}}}
+
+
+
+A constructor. 
+
+Constructs the \mbox{\hyperlink{class_q_r}{QR}} class. \mbox{\Hypertarget{class_q_r_a878102a10436aaf86048d4f412fa4268}\label{class_q_r_a878102a10436aaf86048d4f412fa4268}} 
+\index{QR$<$ Matrix, Vector, Scalar $>$@{QR$<$ Matrix, Vector, Scalar $>$}!````~QR@{$\sim$QR}}
+\index{````~QR@{$\sim$QR}!QR$<$ Matrix, Vector, Scalar $>$@{QR$<$ Matrix, Vector, Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$QR()}{~QR()}}
+{\footnotesize\ttfamily template$<$typename Matrix , typename Vector , typename Scalar $>$ \\
+\mbox{\hyperlink{class_q_r}{QR}}$<$ Matrix, Vector, Scalar $>$\+::$\sim$\mbox{\hyperlink{class_q_r}{QR}}\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+A destructor. 
+
+Destructs the \mbox{\hyperlink{class_q_r}{QR}} class. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_q_r_aaaae7d8323339437e10a6ef854b03365}\label{class_q_r_aaaae7d8323339437e10a6ef854b03365}} 
+\index{QR$<$ Matrix, Vector, Scalar $>$@{QR$<$ Matrix, Vector, Scalar $>$}!SolveEquation@{SolveEquation}}
+\index{SolveEquation@{SolveEquation}!QR$<$ Matrix, Vector, Scalar $>$@{QR$<$ Matrix, Vector, Scalar $>$}}
+\doxysubsubsection{\texorpdfstring{SolveEquation()}{SolveEquation()}}
+{\footnotesize\ttfamily template$<$typename Matrix , typename Vector , typename Scalar $>$ \\
+Vector \mbox{\hyperlink{class_q_r}{QR}}$<$ Matrix, Vector, Scalar $>$\+::Solve\+Equation\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+A method function that solves for all eigenvalues with the \mbox{\hyperlink{class_q_r}{QR}} method. 
+
+\begin{DoxyReturn}{Returns}
+All eigenvalues in a vector form 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_abstract_linalg_solver_a5448aaceecfd3525e4f980ab5d9a21e5}{Abstract\+Linalg\+Solver$<$ Matrix, Vector, Scalar $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+qr.\+hpp\item 
+qr.\+cpp\end{DoxyCompactItemize}

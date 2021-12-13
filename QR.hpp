@@ -11,8 +11,8 @@
 using namespace Eigen;
 
 /**
- * @brief Daughter class of AbstractLinalgSolver
- * Finds all the eigenvalues of the member matrix with the QR algorithm
+ * @brief Daughter class of AbstractLinalgSolver.
+ * Class implementing the QR algorithm
  * @tparam Matrix is the templated parameter for matrices in the algorithm
  * @tparam Vector is the templated parameter for vectors in the algorithm
  * @tparam Scalar is the templated parameter for scalars in the algorithm

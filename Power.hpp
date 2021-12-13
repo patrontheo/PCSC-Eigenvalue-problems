@@ -11,8 +11,8 @@
 using namespace Eigen;
 
 /**
- * @brief Daughter class of AbstractLinalgSolver
- * Finds the largest eigenvalue of the member matrix with the power method
+ * @brief Daughter class of AbstractLinalgSolver.
+ * Class implementing the power method
  * 
  * @tparam Matrix is the templated parameter for matrices in the algorithm
  * @tparam Vector is the templated parameter for vectors in the algorithm
@@ -24,20 +24,20 @@ public:
     // Constructor and destructor
     //! A constructor.
     /*!
-    Constructs the Power class.
+    Constructs the Power class instance.
     */
     Power();
 
     //! A destructor.
     /*!
-    Destructs the Power class.
+    Destructs the Power class instance.
     */
     virtual ~Power();
 
     //Methods
      //! A method function that solves the largest eigenvalue with the power method
     /*!
-    \return The largest eigenvalue in vector form
+    \return The largest eigenvalue as a vector of one element
     */
     virtual Vector SolveEquation(); 
 
