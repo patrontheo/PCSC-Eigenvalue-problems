@@ -5,10 +5,22 @@
 #include <iostream>
 #include <Eigen/Dense>
 
-template <typename T> 
+/**
+ * @brief Abstract super-class for loading input matrix
+ * This class contain only the method LoadData which returns
+ * the loaded matrix
+ * @tparam Matrix is the templated parameter for input matrix
+ */
+template <typename Matrix> 
 class Input{
 public:
-    virtual T LoadData(std::string filename) = 0;
+    /**
+     * @brief Virtual pure method for loading data
+     * 
+     * @param filename 
+     * @return Matrix, the loaded matrix
+     */
+    virtual Matrix LoadData(std::string filename) = 0;
 };
 
 #endif

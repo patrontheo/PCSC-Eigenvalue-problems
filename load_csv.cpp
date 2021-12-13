@@ -5,8 +5,8 @@
 
 using namespace Eigen;
 
-template <typename T>
-T LoadCSV<T>::LoadData(std::string filename){
+template <typename Matrix>
+Matrix LoadCSV<Matrix>::LoadData(std::string filename){
 
     std::vector<double> entries;
     std::ifstream inputfile(filename);

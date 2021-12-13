@@ -3,10 +3,10 @@
 
 #include "input.hpp"
 
-template <typename T> 
-class LoadCSV: public Input<T>{
+template <typename Matrix> 
+class LoadCSV: public Input<Matrix>{
 public:
-    T LoadData(std::string filename);
+    Matrix LoadData(std::string filename);
 };
 
 #endif

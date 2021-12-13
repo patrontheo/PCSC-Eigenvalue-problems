@@ -7,10 +7,10 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(main main.cpp abstract_linalg_solver.cpp power.cpp load_csv.cpp write_csv.cpp inv_power.cpp qr.cpp) 
 
-add_subdirectory(googletest)
-add_executable(test_pcsc test/test.cc)
-target_link_libraries(test_pcsc gtest_main gtest)
+# add_subdirectory(googletest)
+# add_executable(test_pcsc test/test.cc)
+# target_link_libraries(test_pcsc gtest_main gtest)
 
-include(GoogleTest)
-gtest_discover_tests(test_pcsc)
+# include(GoogleTest)
+# gtest_discover_tests(test_pcsc)
 # add_custom_target(test ./test_pcsc DEPENDS test_pcsc)

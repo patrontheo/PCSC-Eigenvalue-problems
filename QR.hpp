@@ -11,15 +11,15 @@
 
 using namespace Eigen;
 
-template <typename T1, typename T2, typename T3>
-class QR : public AbstractLinalgSolver<T1,T2,T3> {
+template <typename Matrix, typename Vector, typename Scalar>
+class QR : public AbstractLinalgSolver<Matrix,Vector,Scalar> {
 public:
     // Constructor and destructor
     QR();
     virtual ~QR();
 
     //Methods
-    virtual T2 SolveEquation(); 
+    virtual Vector SolveEquation(); 
 
 };
 

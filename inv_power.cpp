@@ -11,21 +11,21 @@ using namespace Eigen;
 // shifted power method, where power method is when sigma=0
 
 // Constructor
-template <typename T1,typename T2,typename T3>
-InvPower<T1, T2,T3>::InvPower() {}
+template <typename Matrix,typename Vector,typename Scalar>
+InvPower<Matrix, Vector,Scalar>::InvPower() {}
 
 // Destructor 
-template <typename T1,typename T2,typename T3>
-InvPower<T1, T2,T3>::~InvPower() {}
+template <typename Matrix,typename Vector,typename Scalar>
+InvPower<Matrix, Vector,Scalar>::~InvPower() {}
 
 // Method
 // power method: shifted power method is when B= A-lambda*I is input into the power method
-template <typename T1,typename T2,typename T3>
-T2 InvPower<T1,T2,T3>::SolveEquation() {
+template <typename Matrix,typename Vector,typename Scalar>
+Vector InvPower<Matrix,Vector,Scalar>::SolveEquation() {
     // Get members 
-    T1 matrix_a = this->matrix_;
+    Matrix matrix_a = this->matrix_;
     double kError =this->error_;
-    T3 shift = this->shift_;
+    Scalar shift = this->shift_;
 
     // Adding a little random number to the shift allow to be able to 
     // compute the eigenvalue even if the shift is exactly the eigenvalue
@@ -34,10 +34,10 @@ T2 InvPower<T1,T2,T3>::SolveEquation() {
     std::uniform_real_distribution<double> distr(-1, 1);    
     shift += distr(eng) / 1e4;
 
-    T1 identity = matrix_a;
+    Matrix identity = matrix_a;
     identity = identity.setIdentity();
 
-    T1 matrix_a_shift = matrix_a;
+    Matrix matrix_a_shift = matrix_a;
 
     // A = A-mu * I;
     if (abs(shift) > 1e-13){
@@ -46,19 +46,19 @@ T2 InvPower<T1,T2,T3>::SolveEquation() {
 
     // Initialise intital vector X of size (n x 1)
     const int kDim =matrix_a_shift.rows();
-    T2 x_old =T2::Random(kDim);
+    Vector x_old =Vector::Random(kDim);
     x_old /= x_old.norm();
 
     //Initialise iterative variables 
-    T2 x_new;
-    T3 eigenvalue = 0;
-    T2 error = T2::Random(kDim);
+    Vector x_new;
+    Scalar eigenvalue = 0;
+    Vector error = Vector::Random(kDim);
 
     double lambdaprime = 1.;
 
     // LU decomposition: we do it here to avoid doing it in 
     // each loop
-    FullPivLU<T1> lu(matrix_a_shift);
+    FullPivLU<Matrix> lu(matrix_a_shift);
 
     // While loop that calculates power method until convergence,
     // Calculate lambda_new, the smallest eigenvalue of A
@@ -77,7 +77,7 @@ T2 InvPower<T1,T2,T3>::SolveEquation() {
         error = matrix_a * x_old - eigenvalue * x_old;
     }   
 
-    T2 eigenvalue_vect(1);
+    Vector eigenvalue_vect(1);
     eigenvalue_vect<<eigenvalue;
     return eigenvalue_vect;
 }    

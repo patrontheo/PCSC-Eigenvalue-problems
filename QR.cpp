@@ -8,33 +8,33 @@
 using namespace Eigen;
 
 // Constructor
-template <typename T1,typename T2,typename T3>
-QR<T1,T2,T3>::QR() {}
+template <typename Matrix,typename Vector,typename Scalar>
+QR<Matrix,Vector,Scalar>::QR() {}
 
 // Destructor 
-template <typename T1,typename T2,typename T3>
-QR<T1,T2,T3>::~QR() {}
+template <typename Matrix,typename Vector,typename Scalar>
+QR<Matrix,Vector,Scalar>::~QR() {}
 
 // Method
 // Shifted QR converges faster
 //
-template <typename T1,typename T2,typename T3>
-T2 QR<T1,T2,T3>::SolveEquation() {
+template <typename Matrix,typename Vector,typename Scalar>
+Vector QR<Matrix,Vector,Scalar>::SolveEquation() {
     //Get members 
-    T1 a = this->matrix_;
+    Matrix a = this->matrix_;
     const double kError =this->error_;
 
     const int kDim = a.rows();
     //Initialise iterative variables 
-    T1 a_new(kDim,kDim);
-    T1 q(kDim,kDim);
-    T1 r(kDim,kDim);
+    Matrix a_new(kDim,kDim);
+    Matrix q(kDim,kDim);
+    Matrix r(kDim,kDim);
 
-    T2 error = T2::Random(kDim);
-    T2 diag = a.diagonal();
-    T2 diag_new;
+    Vector error = Vector::Random(kDim);
+    Vector diag = a.diagonal();
+    Vector diag_new;
 
-    HouseholderQR<T1> qr(kDim,kDim);
+    HouseholderQR<Matrix> qr(kDim,kDim);
 
     while(error.norm()>kError) {
     //compute QkRk= A(k-1)

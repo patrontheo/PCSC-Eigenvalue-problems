@@ -7,10 +7,10 @@
 
 using namespace Eigen;
 
-template <typename T> 
+template <typename Matrix> 
 class Output{
 public:
-    virtual void WriteData(std::string filename, T data) = 0;
+    virtual void WriteData(std::string filename, Matrix data) = 0;
 };
 
 

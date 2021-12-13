@@ -4,10 +4,10 @@
 #include "output.hpp"
 using namespace Eigen;
 
-template <typename T> 
-class WriteCSV: public Output<T>{
+template <typename Matrix> 
+class WriteCSV: public Output<Matrix>{
 public:
-    void WriteData(std::string filename, T data);
+    void WriteData(std::string filename, Matrix data);
 };
 
 #endif
