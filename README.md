@@ -1,5 +1,5 @@
 # PCSC-Eigenvalue-problems
-Project for the Programming concept in Scientific Computing course  
+Project for the Programming concept in Scientific Computing course. 
 
 
 This project implements different numerical methods to solve the eigenvalues of a matrix.  
@@ -8,8 +8,11 @@ and the QR method.
 
 ## Prerequisites
 * `C++17`
-* `eigen3`
 * `Doxygen`
+* `eigen3`
+* `GoogleTest`
+
+The two latter are installed as git submodules (see below).
 
 ## Installation
 
@@ -47,15 +50,23 @@ cd ..
 To view the documentation, open the `html/index.html` file
 
 ## Usage
-
+In order to choose which method to use to find the eigenvalue(s), the user can provide  
+some options. The program can run without any options provided and will use the default  
+options as reported below.  
 * `--method` to specify the method used to find eigenvalues: power, inversepower, or qr.  
 Default: power
-* `--filename` to specify the name of the file in 'data/' used as input matrix.
+* `--filename` to specify the name of the file in 'data/' used as input matrix.  
 Default: mat.csv
 * `--shift` to specify a shift used in inverse power method.  
 Default: 0
 * `--error` to specify the error criterion used to stop the algorithm.  
 Default: 0.0001
+
+As an example, the following command will read `mat.csv` in the folder `data` and use  
+the shifted inverse power solver with `shift = 5.4` and the error criterion used to   
+check the convergence of the algorithm will be set to `1e-5`:  
+`./main --filename mat.csv --method inversepower --shift 5.4 --error 1e-5`  
+
 
 ## Flow of program
 
