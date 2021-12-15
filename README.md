@@ -44,7 +44,7 @@ cd src
 doxygen ../Doxyfile
 cd ..
 ```
-To view the documentation, open the html/index.html file
+To view the documentation, open the `html/index.html` file
 
 ## Usage
 
