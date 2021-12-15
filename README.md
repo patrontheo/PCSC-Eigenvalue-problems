@@ -38,7 +38,7 @@ Default: 0.0001
 ## Flow of program
 
 
-<img src="data/flow.png" alt="flowchart" width="400"/>
+<img src="data/Program_flow.png" alt="flowchart" width="300"/>
 
 ## List of features
 
