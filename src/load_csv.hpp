@@ -11,6 +11,18 @@
 template <typename Matrix> 
 class LoadCSV: public Input<Matrix>{
 public:
+    // Constructor and destructor
+    //! A constructor.
+    /*!
+    Constructs the LoadCSV class instance.
+    */
+    LoadCSV(){};
+
+    //! A destructor.
+    /*!
+    Destructs the LoadCSV class instance.
+    */
+    virtual ~LoadCSV(){};
     /**
      * @brief Load the desired matrix from a csv file
      * 

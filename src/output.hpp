@@ -16,6 +16,18 @@ using namespace Eigen;
 template <typename Matrix> 
 class Output{
 public:
+    // Constructor and destructor
+    //! A constructor.
+    /*!
+    Constructs the Output class instance.
+    */
+    Output(){};
+
+    //! A destructor.
+    /*!
+    Destructs the Output class instance.
+    */
+    virtual ~Output(){};
     /**
      * @brief Virtual pure method for writing eigenvalues
      * 

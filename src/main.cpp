@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
     double error = 0.0001;
     std::string method = "power";
     std::string filename = "../data/mat.csv";
+    std::string extension = "csv";
+    
 
     int command;
 
@@ -58,6 +60,9 @@ int main(int argc, char *argv[])
             case 'f':
                 filename = optarg;
                 filename = "../data/" + filename;
+                if(filename.substr(filename.find_last_of(".") + 1) != "csv") {
+                    extension = filename.substr(filename.find_last_of(".") + 1);
+                } 
             break;
 
             case 'e':
@@ -80,8 +85,15 @@ int main(int argc, char *argv[])
     
 
     MatrixXd mat;
-    LoadCSV<MatrixXd> loader;
-    mat = loader.LoadData(filename);
+    Input<MatrixXd> *ptr_input = 0;
+    if (strcmp(extension.c_str(), "csv") != 0){
+        std::cerr << "The extension of your input file is not supported. Aborting..";
+        return 1;
+    } 
+    else{
+        ptr_input = new LoadCSV<MatrixXd>;
+    }
+    mat = ptr_input->LoadData(filename);
 
     // Solving
     AbstractLinalgSolver<MatrixXd, VectorXd,double> *ptr_solver = 0;
@@ -107,9 +119,12 @@ int main(int argc, char *argv[])
     VectorXd eigenvalue = ptr_solver->SolveEquation();
 
     std::cout << "eigenvalue(s):" << std::endl << eigenvalue << std::endl;
-    
+
+    delete ptr_input;
     delete ptr_solver;
 
     WriteCSV<VectorXd> writer;
     writer.WriteData("../data/eigenvalues.csv", eigenvalue);
+
+    return 0;
 }

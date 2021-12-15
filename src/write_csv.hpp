@@ -12,6 +12,19 @@ using namespace Eigen;
 template <typename Vector> 
 class WriteCSV: public Output<Vector>{
 public:
+    // Constructor and destructor
+    //! A constructor.
+    /*!
+    Constructs the WriteCSV class instance.
+    */
+    WriteCSV(){};
+
+    //! A destructor.
+    /*!
+    Destructs the WriteCSV class instance.
+    */
+    virtual ~WriteCSV(){};
+
     /**
      * @brief Write the computed eigenvalues to a csv file
      * 

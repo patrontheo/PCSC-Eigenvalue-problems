@@ -14,6 +14,19 @@
 template <typename Matrix> 
 class Input{
 public:
+    // Constructor and destructor
+    //! A constructor.
+    /*!
+    Constructs the Input class instance.
+    */
+    Input(){};
+
+    //! A destructor.
+    /*!
+    Destructs the Input class instance.
+    */
+    virtual ~Input(){};
+
     /**
      * @brief Virtual pure method for loading data
      * 
