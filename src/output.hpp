@@ -13,7 +13,7 @@ using namespace Eigen;
  * the eigenvalues to output file
  * @tparam Vector the vector of found eigenvalues 
  */
-template <typename Matrix> 
+template <typename Vector> 
 class Output{
 public:
     // Constructor and destructor
@@ -34,7 +34,7 @@ public:
      * @param filename name of the created output file
      * @param data Vector of eigenvalues to write in the file
      */
-    virtual void WriteData(std::string filename, Matrix data) = 0;
+    virtual void WriteData(std::string filename, Vector data) = 0;
 };
 
 

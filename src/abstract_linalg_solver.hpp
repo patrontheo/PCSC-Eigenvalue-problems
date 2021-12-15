@@ -65,6 +65,12 @@ public:
     */
     double GetError() const { return error_; }
 
+    //! returns the member shift_
+    /*!
+    \return The member shift_
+    */
+    double GetShift() const { return shift_; }
+
     //! A pure virtual method defined in sub classes.
     /*!
     \return returns a vector

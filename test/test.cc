@@ -12,7 +12,8 @@
 
 using namespace Eigen;
 
-TEST(Power, matrice) {
+// test the power solver
+TEST(power, matrice) {
 
     MatrixXd mat(3, 3);
     mat << -2, -4, 2, -2, 1, 2, 4, 2, 5;
@@ -30,6 +31,7 @@ TEST(Power, matrice) {
     ASSERT_NEAR(6, eigenvalue(0), 1e-3);
 }
 
+// test the inverse power solver
 TEST(InversePower, matrice) {
 
     MatrixXd mat(3, 3);
@@ -48,6 +50,7 @@ TEST(InversePower, matrice) {
     ASSERT_NEAR(3, eigenvalue(0), 1e-3);
 }
 
+// Test the inverse power shifted solver with two different shifts
 TEST(InversePowerShifted, matrice) {
 
     MatrixXd mat(3, 3);
@@ -58,15 +61,24 @@ TEST(InversePowerShifted, matrice) {
 
     ptr_solver->SetMatrix(mat);
     ptr_solver->SetError(0.0001);
+    
+    //shift of 5 to find eigenvalue 6
     ptr_solver->SetShift(5);
-
     VectorXd eigenvalue = ptr_solver->SolveEquation();
     VectorXd val(1);
     val << eigenvalue;
 
     ASSERT_NEAR(6, eigenvalue(0), 1e-3);
+
+    //shift of -4 to find eigenvalue -5
+    ptr_solver->SetShift(-4);
+    eigenvalue = ptr_solver->SolveEquation();
+    val << eigenvalue;
+
+    ASSERT_NEAR(-5, eigenvalue(0), 1e-3);
 }
 
+//Test the qr solver
 TEST(qr, matrice) {
 
     MatrixXd mat(3, 3);
@@ -85,4 +97,72 @@ TEST(qr, matrice) {
     ASSERT_NEAR(val(0), eigenvalue(0), 1e-3);
     ASSERT_NEAR(val(1), eigenvalue(1), 1e-3);
     ASSERT_NEAR(val(2), eigenvalue(2), 1e-3);
+}
+
+// test the matrix loading from csv file
+TEST(Load_CSV, load_matrix) {
+    MatrixXd mat(3, 3);
+    mat << -2, -4, 2, -2, 1, 2, 4, 2, 5;
+
+    MatrixXd mat2;
+    LoadCSV<MatrixXd> loader;
+    mat2 = loader.LoadData("../data/mat.csv");
+
+    for(int rows(0); rows < mat.rows(); rows++){
+        for(int cols(0); cols < mat.cols(); cols++){
+            ASSERT_NEAR(mat(rows, cols), mat2(rows, cols), 1e-13);
+        }
+    }
+}
+
+
+//Test the Set and Get matrix methods
+// We use and instance of the power subclass 
+// because abstractlinalgsolver is an abstract class
+TEST(set_get_matrix, matrice) {
+
+    MatrixXd mat(3, 3);
+    mat << -2, -4, 2, -2, 1, 2, 4, 2, 5;
+
+    AbstractLinalgSolver<MatrixXd, VectorXd,double> *ptr_solver = 0;
+    ptr_solver = new QR<MatrixXd,VectorXd, double>;
+
+    ptr_solver->SetMatrix(mat);
+    MatrixXd mat2 = ptr_solver->GetMatrix();
+
+    for(int rows(0); rows < mat.rows(); rows++){
+        for(int cols(0); cols < mat.cols(); cols++){
+            ASSERT_NEAR(mat(rows, cols), mat2(rows, cols), 1e-13);
+        }
+    }
+}
+
+// Test the Set and Get error methods
+// We use and instance of the power subclass 
+// because abstractlinalgsolver is an abstract class
+TEST(set_get_error, matrice) {
+    double error = 1e-5;
+
+    AbstractLinalgSolver<MatrixXd, VectorXd,double> *ptr_solver = 0;
+    ptr_solver = new QR<MatrixXd,VectorXd, double>;
+
+    ptr_solver->SetError(error);
+    double error2 = ptr_solver->GetError();
+
+    ASSERT_NEAR(error, error2, 1e-13);
+}
+
+// Test the Set and Get shift methods
+// We use and instance of the power subclass 
+// because abstractlinalgsolver is an abstract class
+TEST(set_get_shift, matrice) {
+    double shift = 4.2;
+
+    AbstractLinalgSolver<MatrixXd, VectorXd,double> *ptr_solver = 0;
+    ptr_solver = new QR<MatrixXd,VectorXd, double>;
+
+    ptr_solver->SetShift(shift);
+    double shift2 = ptr_solver->GetShift();
+
+    ASSERT_NEAR(shift, shift2, 1e-13);
 }

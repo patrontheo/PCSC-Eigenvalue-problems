@@ -12,5 +12,5 @@ void WriteCSV<Vector>::WriteData(std::string filename, Vector data){
     outputfile << data.format(CSVFormat);
 }
 
-template class WriteCSV<MatrixXd>;
+// template class WriteCSV<MatrixXd>;
 template class WriteCSV<VectorXd>;
