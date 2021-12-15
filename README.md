@@ -12,18 +12,21 @@ and the QR method.
 * `Doxygen`
 
 ## Installation
-Install google test:
-```
-git submodule update --init
-```
 
-Install Doxygene:
-https://www.doxygen.nl/manual/install.html
-
-## Build CMake Project 
+Clone the repo:
 ```
 git clone git@github.com:patrontheo/PCSC-Eigenvalue-problems.git
 cd PCSC-Eigenvalue-problems
+```
+
+Install GoogleTest and Eigen libraries:
+```
+git submodule update --init
+cd ..
+```
+
+## Build CMake Project 
+```
 mkdir build
 cd build
 cmake ..
@@ -32,6 +35,10 @@ cd ..
 ```
 
 ## Create Doxygen documentation
+Install Doxygene:
+https://www.doxygen.nl/manual/install.html
+
+Create documentation
 ```
 cd src
 doxygen ../Doxyfile
