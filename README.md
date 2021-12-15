@@ -42,11 +42,14 @@ Default: 0.0001
 
 ## List of features
 
-* Choice of numerical methods for solving for eigenvalues 
-* Easy conversion to variations of matrices(, as templated classes were used
+* Changable numerical methods for solving for eigenvalues 
+* Easy conversion to variations of matrices(ex: complex matrices)
 * No limitations on input matrix size
+* Choice of accuracy with adjustable error 
+* Easy addition of new dataloader
 
-## Googletest
+## Tests
+ 
 
 ## Limitations and problems 
 The limitations of this program lie in the numerical algorithms implemented. If the matrix contains eigenvalues of the same magnitude, the algortihms will not be able to converge. Moreover, if the matrix is singular, which means that it contains eigenvalues equal to zero, the algorithm with also not converge. 
