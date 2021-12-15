@@ -41,13 +41,13 @@ cd ..
 Install Doxygen:
 https://www.doxygen.nl/manual/install.html
 
-Create documentation
+Create the documentation:
 ```
 cd src
 doxygen ../Doxyfile
 cd ..
 ```
-To view the documentation, open the `html/index.html` file
+To view the documentation, open the `html/index.html` file.
 
 ## Usage
 In order to choose which method to use to find the eigenvalue(s), the user can provide  
@@ -82,7 +82,22 @@ check the convergence of the algorithm will be set to `1e-5`:
 * Easy addition of new dataloader
 
 ## Tests
- 
+This project uses the GoogleTest library.  
+The tests are stored in the `test/test.cc` file.  
+To run the tests, place yourself in the `build` directory and run the command:  
+`./test_pcsc`  
+
+The following tests are implemented:
+* `power.solve` checks that the eigenvalue obtained with the power method is valid
+* `inverse_power.solve` checks that the eigenvalue obtained with the inverse power method is valid
+* `inverse_power.shifted_solve` checks that the eigenvalue obtained with the shifted inverse power method is valid
+* `qr.solve` checks that the eigenvalue obtained with the qr method is valid
+* `load_csv.load_matrix` checks that the matrix loaded from csv file with load_matrix is valid
+* `abstract_linalg_solver.set_get_matrix` checks that the getter and setter methods for matrix_ member are correct.
+* `abstract_linalg_solver.set_get_error` checks that the getter and setter methods for error_ member are correct.
+* `abstract_linalg_solver.set_get_shift` checks that the getter and setter methods for shift_ member are correct.
+
+
 
 ## Limitations and problems 
 The limitations of this program lie in the numerical algorithms implemented. If the matrix contains eigenvalues of the same magnitude, the algortihms will not be able to converge. Moreover, if the matrix is singular, which means that it contains eigenvalues equal to zero, the algorithm with also not converge. 
