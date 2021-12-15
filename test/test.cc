@@ -13,7 +13,7 @@
 using namespace Eigen;
 
 // test the power solver
-TEST(power, matrice) {
+TEST(power, solve) {
 
     MatrixXd mat(3, 3);
     mat << -2, -4, 2, -2, 1, 2, 4, 2, 5;
@@ -32,7 +32,7 @@ TEST(power, matrice) {
 }
 
 // test the inverse power solver
-TEST(InversePower, matrice) {
+TEST(inverse_power, solve) {
 
     MatrixXd mat(3, 3);
     mat << -2, -4, 2, -2, 1, 2, 4, 2, 5;
@@ -51,7 +51,7 @@ TEST(InversePower, matrice) {
 }
 
 // Test the inverse power shifted solver with two different shifts
-TEST(InversePowerShifted, matrice) {
+TEST(inverse_power, shifted_solve) {
 
     MatrixXd mat(3, 3);
     mat << -2, -4, 2, -2, 1, 2, 4, 2, 5;
@@ -79,7 +79,7 @@ TEST(InversePowerShifted, matrice) {
 }
 
 //Test the qr solver
-TEST(qr, matrice) {
+TEST(qr, solve) {
 
     MatrixXd mat(3, 3);
     mat << -2, -4, 2, -2, 1, 2, 4, 2, 5;
@@ -100,7 +100,7 @@ TEST(qr, matrice) {
 }
 
 // test the matrix loading from csv file
-TEST(Load_CSV, load_matrix) {
+TEST(load_csv, load_matrix) {
     MatrixXd mat(3, 3);
     mat << -2, -4, 2, -2, 1, 2, 4, 2, 5;
 
@@ -119,7 +119,7 @@ TEST(Load_CSV, load_matrix) {
 //Test the Set and Get matrix methods
 // We use and instance of the power subclass 
 // because abstractlinalgsolver is an abstract class
-TEST(set_get_matrix, matrice) {
+TEST(abstract_linalg_solver, set_get_matrix) {
 
     MatrixXd mat(3, 3);
     mat << -2, -4, 2, -2, 1, 2, 4, 2, 5;
@@ -140,7 +140,7 @@ TEST(set_get_matrix, matrice) {
 // Test the Set and Get error methods
 // We use and instance of the power subclass 
 // because abstractlinalgsolver is an abstract class
-TEST(set_get_error, matrice) {
+TEST(abstract_linalg_solver, set_get_error) {
     double error = 1e-5;
 
     AbstractLinalgSolver<MatrixXd, VectorXd,double> *ptr_solver = 0;
@@ -155,7 +155,7 @@ TEST(set_get_error, matrice) {
 // Test the Set and Get shift methods
 // We use and instance of the power subclass 
 // because abstractlinalgsolver is an abstract class
-TEST(set_get_shift, matrice) {
+TEST(abstract_linalg_solver, set_get_shift) {
     double shift = 4.2;
 
     AbstractLinalgSolver<MatrixXd, VectorXd,double> *ptr_solver = 0;
