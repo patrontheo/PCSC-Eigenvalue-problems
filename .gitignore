@@ -35,4 +35,6 @@
 *.vscode 
 build/*
 eigen/*
+html/*
+latex/*
 *.DS_Store
