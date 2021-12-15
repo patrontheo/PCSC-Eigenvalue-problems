@@ -35,7 +35,7 @@ cd ..
 ```
 
 ## Create Doxygen documentation
-Install Doxygene:
+Install Doxygen:
 https://www.doxygen.nl/manual/install.html
 
 Create documentation
