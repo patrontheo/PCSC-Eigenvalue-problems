@@ -7,8 +7,8 @@ The different numerical methods are Power method, Inverse Power method with and 
 and the QR method.
 
 ## Prerequisites
-*C++17  
-*eigen3
+* C++17  
+* eigen3
 
 ## Installation
 Install google test:
@@ -37,6 +37,17 @@ Default: 0.0001
 
 ## Flow of program
 
-![Example result](data/flow.png)
+
+<img src="data/flow.png" alt="flowchart" width="400"/>
+
+## List of features
+
+* Choice of numerical methods for solving for eigenvalues 
+* Easy conversion to variations of matrices(, as templated classes were used
+* No limitations on input matrix size
+
+## Googletest
 
 ## Limitations and problems 
+The limitations of this program lie in the numerical algorithms implemented. If the matrix contains eigenvalues of the same magnitude, the algortihms will not be able to converge. Moreover, if the matrix is singular, which means that it contains eigenvalues equal to zero, the algorithm with also not converge. 
+
