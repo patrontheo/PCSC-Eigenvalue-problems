@@ -15,6 +15,7 @@ Install google test:
 ```
 git submodule update --init
 ```
+Install Doxygene:
 ## Build CMake Project 
 ```
 mkdir build
