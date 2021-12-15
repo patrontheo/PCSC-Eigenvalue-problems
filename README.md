@@ -7,33 +7,47 @@ The different numerical methods are Power method, Inverse Power method with and 
 and the QR method.
 
 ## Prerequisites
-* C++17  
-* eigen3
+* `C++17`
+* `eigen3`
+* `Doxygen`
 
 ## Installation
 Install google test:
 ```
 git submodule update --init
 ```
+
 Install Doxygene:
+https://www.doxygen.nl/manual/install.html
+
 ## Build CMake Project 
 ```
+git clone git@github.com:patrontheo/PCSC-Eigenvalue-problems.git
+cd PCSC-Eigenvalue-problems
 mkdir build
 cd build
 cmake ..
 make
+cd ..
 ```
 
+## Create Doxygen documentation
+```
+cd src
+doxygen ../Doxyfile
+cd ..
+```
+To view the documentation, open the html/index.html file
 
 ## Usage
 
-* --method to specify the method used to find eigenvalues: power, inversepower, or qr.  
+* `--method` to specify the method used to find eigenvalues: power, inversepower, or qr.  
 Default: power
-* --filename to specify the name of the file in 'data/' used as input matrix.
+* `--filename` to specify the name of the file in 'data/' used as input matrix.
 Default: mat.csv
-* --shift to specify a shift used in inverse power method.  
+* `--shift` to specify a shift used in inverse power method.  
 Default: 0
-* --error to specify the error criterion used to stop the algorithm.  
+* `--error` to specify the error criterion used to stop the algorithm.  
 Default: 0.0001
 
 ## Flow of program
