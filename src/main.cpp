@@ -19,14 +19,15 @@ using namespace Eigen;
 
 int main(int argc, char *argv[])
 {   
+    // Default variables
     double shift = 0;
     double error = 0.0001;
     std::string method = "power";
     std::string filename = "../data/mat.csv";
     std::string extension = "csv";
     
-
-    int command;
+    //Variable used for parsing command line arguments
+    int command; 
 
     while (1)
         {
@@ -49,14 +50,17 @@ int main(int argc, char *argv[])
 
         switch (command)
             {
+            // Shift
             case 's':
                 shift = atof(optarg);
             break;
 
+            // Method
             case 'm':
                 method = optarg;
             break;
 
+            // Filename
             case 'f':
                 filename = optarg;
                 filename = "../data/" + filename;
@@ -65,6 +69,7 @@ int main(int argc, char *argv[])
                 } 
             break;
 
+            // Error
             case 'e':
                 error = atof(optarg);
             break;
@@ -83,8 +88,10 @@ int main(int argc, char *argv[])
         putchar ('\n');
         }
     
-
+    // Define matrix 
     MatrixXd mat;
+
+    // Define pointer to input class
     Input<MatrixXd> *ptr_input = 0;
     if (strcmp(extension.c_str(), "csv") != 0){
         std::cerr << "The extension of your input file is not supported. Aborting..";
@@ -93,11 +100,12 @@ int main(int argc, char *argv[])
     else{
         ptr_input = new LoadCSV<MatrixXd>;
     }
+
+    // Load matrix
     mat = ptr_input->LoadData(filename);
 
-    // Solving
+    // Create pointer to abstract class
     AbstractLinalgSolver<MatrixXd, VectorXd,double> *ptr_solver = 0;
-
     if (strcmp(method.c_str(), "inversepower") == 0) ptr_solver = new InvPower<MatrixXd,VectorXd, double>;
     else if (strcmp(method.c_str(), "qr") == 0) ptr_solver = new QR<MatrixXd,VectorXd, double>;
     else {
@@ -105,24 +113,25 @@ int main(int argc, char *argv[])
         method = "power";
     }
 
+    // print to show chosen options
     std::cout << "filename: " << filename << std::endl;
     std::cout << "method: " << method << std::endl;
     std::cout << "shift: " << shift << std::endl;
     std::cout << "error: " << error << std::endl;
-    std::cout << "input matrix:" << std::endl << mat << std::endl;
 
     // Set parameters
     ptr_solver->SetMatrix(mat);
     ptr_solver->SetShift(shift);
     ptr_solver->SetError(error);
 
+    // Solve for eigenvalues
     VectorXd eigenvalue = ptr_solver->SolveEquation();
 
-    std::cout << "eigenvalue(s):" << std::endl << eigenvalue << std::endl;
-
+    // Delete pointers
     delete ptr_input;
     delete ptr_solver;
 
+    // Write to file
     WriteCSV<VectorXd> writer;
     writer.WriteData("../data/eigenvalues.csv", eigenvalue);
 
