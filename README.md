@@ -104,9 +104,12 @@ To run the tests, place yourself in the `build` directory and run the command:
 `./test_pcsc`  
 
 The following tests are implemented:
-* `power.solve` checks that the eigenvalue obtained with the power method is valid.
-* `inverse_power.solve` checks that the eigenvalue obtained with the inverse power method is valid.
-* `inverse_power.shifted_solve` checks that the eigenvalue obtained with the shifted inverse power method is valid.
+* `power.solve3x3` checks that the eigenvalue obtained with the power method is valid on a 3x3 matrix.
+* `power.solve5x5` checks that the eigenvalue obtained with the power method is valid on a 5x5 matrix.
+* `inverse_power.solve3x3` checks that the eigenvalue obtained with the inverse power method is valid on a 3x3 matrix.
+* `inverse_power.solve5x5` checks that the eigenvalue obtained with the inverse power method is valid on a 5x5 matrix.
+* `inverse_power.shifted_solve3x3` checks that the eigenvalue obtained with the shifted inverse power method is valid on a 3x3 matrix.
+* `inverse_power.shifted_solve5x5` checks that the eigenvalue obtained with the shifted inverse power method is valid on a 5x5 matrix
 * `qr.solve` checks that the eigenvalue obtained with the qr method are valid.
 * `load_csv.load_matrix` checks that the matrix loaded from csv file with load_matrix is valid.
 * `abstract_linalg_solver.set_get_matrix` checks that the getter and setter methods for matrix_ member are correct.
