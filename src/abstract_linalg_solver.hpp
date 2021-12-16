@@ -40,17 +40,18 @@ public:
     */
     void SetMatrix(Matrix matrix);
 
+    //! Set the member error_.
+    /*!
+    \param error a double argument
+    */
+    void SetError(double error);
+
     //! Set the member shift_.
     /*!
     \param shift a Scalar argument
     */
     void SetShift(Scalar shift);
 
-    //! Set the member error_.
-    /*!
-    \param error a double argument
-    */
-    void SetError(double error);
 
     //! Returns the member matrix_
     /*!
@@ -77,7 +78,7 @@ public:
     */
     virtual Vector SolveEquation() = 0;
 
-protected:
+private:
     Matrix matrix_; /*!< The matrix used to find the eigenvalues*/
     double error_; /*!< The threshold used to end the algorithms solving for the eigenvalues */
     Scalar shift_; /*!< A scalar containing the value of the shift to be used in the shifted inverse power method */

@@ -121,8 +121,8 @@ int main(int argc, char *argv[])
 
     // Set parameters
     ptr_solver->SetMatrix(mat);
-    ptr_solver->SetShift(shift);
     ptr_solver->SetError(error);
+    ptr_solver->SetShift(shift);
 
     // Solve for eigenvalues
     VectorXd eigenvalue = ptr_solver->SolveEquation();

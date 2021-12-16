@@ -34,12 +34,14 @@ public:
     virtual ~InvPower();
 
     // Methods
+
      //! A method function that returns the smallest eigenvalue with the inverse power method
     /*!
     \return The smallest eigenvalue as a vector of one element
     */
     virtual Vector SolveEquation(); 
 
+    
 };
 
 #endif
