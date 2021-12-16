@@ -50,6 +50,7 @@ cd ..
 To view the documentation, open the `html/index.html` file.
 
 ## Usage
+### Command line arguments
 In order to choose which method to use to find the eigenvalue(s), the user can provide  
 some options. The program can run without any options provided and will use the default  
 options as reported below.  
@@ -67,6 +68,15 @@ the shifted inverse power solver with `shift = 5.4` and the error criterion used
 check the convergence of the algorithm will be set to `1e-5`:  
 `./main --filename mat.csv --method inversepower --shift 5.4 --error 1e-5`  
 
+### Type of file parsing
+In order to choose which loader class to use to load the input matrix, the given filename  
+extension is parsed from the filename and the appropriate loader is chosen depending on   
+the extension provided. Here, we implemented only a CSV loader, so the program will  
+return an error code 1 if a different format is provided. The program is easily adaptable  
+to add another loader.
+
+### Output
+The computed eigenvalue(s) are written in the `data/eigenvalues.csv` file.
 
 ## Flow of program
 
