@@ -30,7 +30,6 @@ cd PCSC-Eigenvalue-problems
 Install GoogleTest and Eigen libraries:
 ```
 git submodule update --init
-cd ..
 ```
 
 ## Build CMake Project 
