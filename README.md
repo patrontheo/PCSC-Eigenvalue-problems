@@ -70,7 +70,8 @@ Default: 0.0001
 
 As an example, the following command will read `mat.csv` in the folder `data` and use  
 the shifted inverse power solver with `shift = 5.4` and the error criterion used to   
-check the convergence of the algorithm will be set to `1e-5`:  
+check the convergence of the algorithm will be set to `1e-5`(command to be executed  
+in the `build` folder):  
 `./main --filename mat.csv --method inversepower --shift 5.4 --error 1e-5`  
 
 ### Type of file parsing
