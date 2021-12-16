@@ -13,7 +13,7 @@
 using namespace Eigen;
 
 // test the power solver
-TEST(power, solve) {
+TEST(power, solve3x3) {
 
     MatrixXd mat(3, 3);
     mat << -2, -4, 2, -2, 1, 2, 4, 2, 5;
@@ -31,8 +31,24 @@ TEST(power, solve) {
     ASSERT_NEAR(6, eigenvalue(0), 1e-3);
 }
 
+TEST(power, solve5x5) {
+
+    MatrixXd mat(5, 5);
+    mat << 6, 8, 7, 5, 4, 8, 7, 65, 7, 8, 7, 65, 5, 4, 6, 5, 7, 4, 6, 7, 4, 8, 6, 7, 87;
+
+    AbstractLinalgSolver<MatrixXd, VectorXd,double> *ptr_solver = 0;
+    ptr_solver = new Power<MatrixXd,VectorXd, double>;
+
+    ptr_solver->SetMatrix(mat);
+    ptr_solver->SetError(0.0001);
+
+    VectorXd eigenvalue = ptr_solver->SolveEquation();
+
+    ASSERT_NEAR(93.7509, eigenvalue(0), 1e-3);
+}
+
 // test the inverse power solver
-TEST(inverse_power, solve) {
+TEST(inverse_power, solve3x3) {
 
     MatrixXd mat(3, 3);
     mat << -2, -4, 2, -2, 1, 2, 4, 2, 5;
@@ -44,14 +60,28 @@ TEST(inverse_power, solve) {
     ptr_solver->SetError(0.0001);
 
     VectorXd eigenvalue = ptr_solver->SolveEquation();
-    VectorXd val(1);
-    val << eigenvalue;
 
     ASSERT_NEAR(3, eigenvalue(0), 1e-3);
 }
 
+TEST(inverse_power, solve5x5) {
+
+    MatrixXd mat(5, 5);
+    mat << 6, 8, 7, 5, 4, 8, 7, 65, 7, 8, 7, 65, 5, 4, 6, 5, 7, 4, 6, 7, 4, 8, 6, 7, 87;
+
+    AbstractLinalgSolver<MatrixXd, VectorXd,double> *ptr_solver = 0;
+    ptr_solver = new InvPower<MatrixXd,VectorXd, double>;
+
+    ptr_solver->SetMatrix(mat);
+    ptr_solver->SetError(0.0001);
+
+    VectorXd eigenvalue = ptr_solver->SolveEquation();
+
+    ASSERT_NEAR(0.883932, eigenvalue(0), 1e-3);
+}
+
 // Test the inverse power shifted solver with two different shifts
-TEST(inverse_power, shifted_solve) {
+TEST(inverse_power, shifted_solve3x3) {
 
     MatrixXd mat(3, 3);
     mat << -2, -4, 2, -2, 1, 2, 4, 2, 5;
@@ -65,21 +95,42 @@ TEST(inverse_power, shifted_solve) {
     //shift of 5 to find eigenvalue 6
     ptr_solver->SetShift(5);
     VectorXd eigenvalue = ptr_solver->SolveEquation();
-    VectorXd val(1);
-    val << eigenvalue;
 
     ASSERT_NEAR(6, eigenvalue(0), 1e-3);
 
     //shift of -4 to find eigenvalue -5
     ptr_solver->SetShift(-4);
     eigenvalue = ptr_solver->SolveEquation();
-    val << eigenvalue;
 
     ASSERT_NEAR(-5, eigenvalue(0), 1e-3);
 }
 
+TEST(inverse_power, shifted_solve5x5) {
+
+    MatrixXd mat(5, 5);
+    mat << 6, 8, 7, 5, 4, 8, 7, 65, 7, 8, 7, 65, 5, 4, 6, 5, 7, 4, 6, 7, 4, 8, 6, 7, 87;
+
+    AbstractLinalgSolver<MatrixXd, VectorXd,double> *ptr_solver = 0;
+    ptr_solver = new InvPower<MatrixXd,VectorXd, double>;
+
+    ptr_solver->SetMatrix(mat);
+    ptr_solver->SetError(0.0001);
+    
+    //shift of 5 to find eigenvalue 7.94752
+    ptr_solver->SetShift(5);
+    VectorXd eigenvalue = ptr_solver->SolveEquation();
+
+    ASSERT_NEAR(7.94752, eigenvalue(0), 1e-3);
+
+    //shift of -50 to find eigenvalue -59.0857
+    ptr_solver->SetShift(-50);
+    eigenvalue = ptr_solver->SolveEquation();
+
+    ASSERT_NEAR(-59.0857, eigenvalue(0), 1e-3);
+}
+
 //Test the qr solver
-TEST(qr, solve) {
+TEST(qr, solve3x3) {
 
     MatrixXd mat(3, 3);
     mat << -2, -4, 2, -2, 1, 2, 4, 2, 5;
@@ -97,6 +148,26 @@ TEST(qr, solve) {
     ASSERT_NEAR(val(0), eigenvalue(0), 1e-3);
     ASSERT_NEAR(val(1), eigenvalue(1), 1e-3);
     ASSERT_NEAR(val(2), eigenvalue(2), 1e-3);
+}
+
+TEST(qr, solve5x5) {
+
+    MatrixXd mat(5, 5);
+    mat << 6, 8, 7, 5, 4, 8, 7, 65, 7, 8, 7, 65, 5, 4, 6, 5, 7, 4, 6, 7, 4, 8, 6, 7, 87;
+
+    AbstractLinalgSolver<MatrixXd, VectorXd,double> *ptr_solver = 0;
+    ptr_solver = new QR<MatrixXd,VectorXd, double>;
+
+    ptr_solver->SetMatrix(mat);
+    ptr_solver->SetError(0.0001);
+
+    VectorXd eigenvalue = ptr_solver->SolveEquation();
+    VectorXd val(5);
+    val << 93.7509, 67.5034, -59.0857, 7.94752, 0.883932;
+
+    for(int rows(0); rows < val.rows(); rows++){
+        ASSERT_NEAR(val(rows), eigenvalue(rows), 1e-3);
+    }
 }
 
 // test the matrix loading from csv file
