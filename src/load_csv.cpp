@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <assert.h>
 
 using namespace Eigen;
 
@@ -13,6 +14,12 @@ Matrix LoadCSV<Matrix>::LoadData(std::string filename){
     std::string row;
     std::string element;
     int count_line(0);
+
+    // To check if the file exists
+    if(inputfile.fail()){
+        std::cerr << "The specified file does not exist" << std::endl;
+        assert(0); //stop the program if the file does not exist
+    }
     
     while (getline(inputfile, row)) 
     {
