@@ -116,6 +116,7 @@ The following tests are implemented:
 
 
 ## Limitations and problems 
-The limitations of this program lie in the numerical algorithms implemented. If the matrix contains eigenvalues of the same magnitude, the algortihms will not be able to converge. Moreover, if the matrix is singular, which means that it contains eigenvalues equal to zero, the algorithm with also not converge.   
-* For the inverse power method, if the provided shift is exactly an eigenvalue of the matrix, or if the shift is exactly between two eigenvalues (e.g. shift = 3 and 2 and 4 are eigenvalues), the algorithm may not converge, or take a big amount of time to do so. To avoid this behaviour, a small random number (in [-1e-4; 1e-4]) is added to the shift. This way, the shift is never exactly on an eigenvalue or between two eigenvalues.
+* Some of the limitations of this program lie in the numerical algorithms implemented. If the matrix contains eigenvalues of the same magnitude, the algortihms will not be able to converge. Moreover, if the matrix is singular, which means that it contains eigenvalues equal to zero, the algorithm with also not converge.   
+* For the inverse power method, if the provided shift is exactly an eigenvalue of the matrix, or if the shift is exactly between two eigenvalues (e.g. shift = 3 and 2 and 4 are eigenvalues), the algorithm may not converge, or take a big amount of time to do so. To avoid this behaviour, a small random number (in [-1e-4; 1e-4]) is added to the shift. This way, the shift is never exactly on an eigenvalue or between two eigenvalues. 
+* Moreover, the algortihm doesn't solve for complex eigenvalues. Thus, to ensure the valitity of the computation must be either symmetric or with real eigenvalues.
 
