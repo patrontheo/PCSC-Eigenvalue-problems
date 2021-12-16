@@ -110,7 +110,8 @@ The following tests are implemented:
 * `inverse_power.solve5x5` checks that the eigenvalue obtained with the inverse power method is valid on a 5x5 matrix.
 * `inverse_power.shifted_solve3x3` checks that the eigenvalue obtained with the shifted inverse power method is valid on a 3x3 matrix.
 * `inverse_power.shifted_solve5x5` checks that the eigenvalue obtained with the shifted inverse power method is valid on a 5x5 matrix
-* `qr.solve` checks that the eigenvalue obtained with the qr method are valid.
+* `qr.solve3x3` checks that the eigenvalue obtained with the qr method are valid on a 3x3 matrix.
+* `qr.solve5x5` checks that the eigenvalue obtained with the qr method are valid on a 5x5 matrix.
 * `load_csv.load_matrix` checks that the matrix loaded from csv file with load_matrix is valid.
 * `abstract_linalg_solver.set_get_matrix` checks that the getter and setter methods for matrix_ member are correct.
 * `abstract_linalg_solver.set_get_error` checks that the getter and setter methods for error_ member are correct.
