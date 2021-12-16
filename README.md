@@ -56,6 +56,7 @@ To view the documentation, open the `html/index.html` file.
 
 ## Usage
 ### Command line arguments
+The getopt c++ library is used to parse the command line arguments.  
 In order to choose which method to use to find the eigenvalue(s), the user can provide  
 some options. The program can run without any options provided and will use the default  
 options as reported below.  
