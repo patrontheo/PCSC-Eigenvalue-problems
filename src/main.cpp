@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     // Load matrix
     mat = ptr_input->LoadData(filename);
 
-    // Create pointer to abstract class
+    // Create pointer to abstract class and instanciate solver
     AbstractLinalgSolver<MatrixXd, VectorXd,double> *ptr_solver = 0;
     if (strcmp(method.c_str(), "inversepower") == 0) ptr_solver = new InvPower<MatrixXd,VectorXd, double>;
     else if (strcmp(method.c_str(), "qr") == 0) ptr_solver = new QR<MatrixXd,VectorXd, double>;

@@ -39,12 +39,12 @@ Vector InvPower<Matrix,Vector,Scalar>::SolveEquation() {
 
     Matrix matrix_a_shift = matrix_a;
 
-    // A = A-mu * I;
+    // A = A-mu * I; The if avoids an useless computation if the shift is 0
     if (abs(shift) > 1e-13){
         matrix_a_shift = matrix_a - shift * identity;
     }
 
-    // Initialise intital vector X of size (n x 1)
+    // Initialise random initial vector X of size (n x 1)
     const int kDim =matrix_a_shift.rows();
     Vector x_old =Vector::Random(kDim);
     x_old /= x_old.norm();

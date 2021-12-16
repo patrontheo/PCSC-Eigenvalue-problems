@@ -44,7 +44,7 @@ Vector Power<Matrix, Vector,Scalar>::SolveEquation() {
         eigenvalue = x_old.transpose() * matrix_a * x_old;
 
         //calculate error 
-        error =matrix_a * x_old - eigenvalue * x_old;
+        error = matrix_a * x_old - eigenvalue * x_old;
     }   
 
     Vector eigenvalue_vect(1);

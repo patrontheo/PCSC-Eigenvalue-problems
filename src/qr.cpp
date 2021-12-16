@@ -33,25 +33,26 @@ Vector QR<Matrix,Vector,Scalar>::SolveEquation() {
     Vector diag = a.diagonal();
     Vector diag_new;
 
+    //QR decomposition
     HouseholderQR<Matrix> qr(kDim,kDim);
 
-    while(error.norm()>kError) {
-    //compute QkRk= A(k-1)
-    qr.compute(a);
-    q=qr.householderQ();
-    r=q.transpose()*a;
-    //Reassemble factors Ak=RkQk
-    a_new = r*q;
-    a=a_new;
-    diag_new = a.diagonal();
-    //calculate error
-    error = diag-diag_new;
-    diag=diag_new;
-    
+    while(error.norm() > kError) {
+        //compute Q_k*R_k= A_(k-1)
+        qr.compute(a);
+        q = qr.householderQ();
+        r = q.transpose()*a;
+
+        //Reassemble factors A_k=R_k*Q_k
+        a_new = r * q;
+        a = a_new;
+        diag_new = a.diagonal();
+
+        //calculate error
+        error = diag - diag_new;
+        diag = diag_new;
     }   
 
     return diag;
-
 }   
 
 
