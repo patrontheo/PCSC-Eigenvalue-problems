@@ -19,13 +19,13 @@ template <typename Matrix,typename Vector,typename Scalar>
 InvPower<Matrix, Vector,Scalar>::~InvPower() {}
 
 // Method
-// power method: shifted power method is when B= A-lambda*I is input into the power method
+// Inverse power method 
 template <typename Matrix,typename Vector,typename Scalar>
 Vector InvPower<Matrix,Vector,Scalar>::SolveEquation() {
     // Get members 
-    Matrix matrix_a = this->matrix_;
-    double kError =this->error_;
-    Scalar shift = this->shift_;
+    Matrix matrix_a = this->GetMatrix();
+    double kError =this->GetError();
+    Scalar shift = this->GetShift();
 
     // Adding a little random number to the shift allow to be able to 
     // compute the eigenvalue even if the shift is exactly the eigenvalue

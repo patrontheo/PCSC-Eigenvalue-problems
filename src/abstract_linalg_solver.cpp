@@ -9,7 +9,7 @@ using namespace Eigen;
 
 // Constructor
 template <typename Matrix,typename Vector,typename Scalar>
-AbstractLinalgSolver<Matrix,Vector,Scalar>::AbstractLinalgSolver() : matrix_(), error_(),  shift_() { 
+AbstractLinalgSolver<Matrix,Vector,Scalar>::AbstractLinalgSolver() : matrix_(), error_(), shift_()  { 
 }
 // Destructor 
 template <typename Matrix,typename Vector,typename Scalar>
@@ -21,6 +21,7 @@ void AbstractLinalgSolver<Matrix, Vector, Scalar>::SetMatrix(Matrix  matrix) { m
     
 template <typename Matrix,typename Vector,typename Scalar>
 void AbstractLinalgSolver<Matrix, Vector, Scalar>::SetError(double error) { error_ = error; }
+
 
 template <typename Matrix,typename Vector,typename Scalar>
 void AbstractLinalgSolver<Matrix, Vector, Scalar>::SetShift(Scalar shift) { shift_ = shift; }

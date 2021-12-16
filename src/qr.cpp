@@ -16,13 +16,12 @@ template <typename Matrix,typename Vector,typename Scalar>
 QR<Matrix,Vector,Scalar>::~QR() {}
 
 // Method
-// Shifted QR converges faster
-//
+// QR method
 template <typename Matrix,typename Vector,typename Scalar>
 Vector QR<Matrix,Vector,Scalar>::SolveEquation() {
     //Get members 
-    Matrix a = this->matrix_;
-    const double kError =this->error_;
+    Matrix a = this->GetMatrix();
+    const double kError =this->GetError();
 
     const int kDim = a.rows();
     //Initialise iterative variables 

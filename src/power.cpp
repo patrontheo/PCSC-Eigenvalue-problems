@@ -18,12 +18,12 @@ template <typename Matrix,typename Vector,typename Scalar>
 Power<Matrix, Vector, Scalar>::~Power() {}
 
 // Method
-// power method: shifted power method is when B= A-lambda*I is input into the power method
+// Power method
 template <typename Matrix,typename Vector,typename Scalar>
 Vector Power<Matrix, Vector,Scalar>::SolveEquation() {
     // Get members 
-    Matrix matrix_a = this->matrix_;
-    const double kError =this->error_;
+    Matrix matrix_a = this->GetMatrix();
+    const double kError =this->GetError();
 
     // Initialise initial vector X of size (n x 1)
     const int kDim = matrix_a.rows();
