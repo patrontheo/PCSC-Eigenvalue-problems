@@ -8,8 +8,12 @@ and the QR method.
 
 * The power method returns the largest eigenvalue in magnitude.
 * The inverse power method returns the smallest eigenvalue in magnitude.
-* The shifted inverse power method returns the closest eigenvalue to the given shift.
+* The shifted inverse power method returns the closest eigenvalue to a given shift.
 * The QR method returns all the eigenvalues.
+
+The implemented classes are depicted in the following diagram:  
+<img src="data/class_diagram.png" alt="classdiagram" width="1000"/>
+
 
 ## Prerequisites
 * `C++17`
@@ -112,12 +116,12 @@ The following tests are implemented:
 * `qr.solve3x3` checks that the eigenvalue obtained with the qr method are valid on a 3x3 matrix.
 * `qr.solve5x5` checks that the eigenvalue obtained with the qr method are valid on a 5x5 matrix.
 * `load_csv.load_matrix` checks that the matrix loaded from csv file with load_matrix is valid.
-* `abstract_linalg_solver.set_get_matrix` checks that the getter and setter methods for matrix_ member are correct.
-* `abstract_linalg_solver.set_get_error` checks that the getter and setter methods for error_ member are correct.
-* `abstract_linalg_solver.set_get_shift` checks that the getter and setter methods for shift_ member are correct.
+* `abstract_linalg_solver.set_get_matrix` checks that the getter and setter methods for matrix_ attribute are correct.
+* `abstract_linalg_solver.set_get_error` checks that the getter and setter methods for error_ attribute are correct.
+* `abstract_linalg_solver.set_get_shift` checks that the getter and setter methods for shift_ attribute are correct.
 
 ## Convergence criterion
-To check the convergence of each algorithm, the member `error_` is used:
+To check the convergence of each algorithm, the attribute `error_` is used:
 * In power and inverse power methods, we consider that the algorithm has converged when the residual is lower than  
 `error_`: `||Ax-ux||<error_`, with A the input matrix, x the eigenvector, and u the computed eigenvalue.
 * In the QR method, we consider that the algorithm has converged when the following inequality is met:     
