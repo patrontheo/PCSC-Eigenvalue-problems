@@ -23,7 +23,7 @@ The two latter are installed as git submodules (see below).
 
 Clone the repo:
 ```
-git clone git@github.com:patrontheo/PCSC-Eigenvalue-problems.git
+git clone https://github.com/patrontheo/PCSC-Eigenvalue-problems.git
 cd PCSC-Eigenvalue-problems
 ```
 
