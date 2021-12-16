@@ -8,8 +8,12 @@ and the QR method.
 
 * The power method returns the largest eigenvalue in magnitude.
 * The inverse power method returns the smallest eigenvalue in magnitude.
-* The shifted inverse power method returns the closest eigenvalue to the given shift.
+* The shifted inverse power method returns the closest eigenvalue to a given shift.
 * The QR method returns all the eigenvalues.
+
+The implemented classes are depicted in the following diagram:  
+<img src="data/class_diagram.png" alt="classdiagram" width="1000"/>
+
 
 ## Prerequisites
 * `C++17`
@@ -23,7 +27,7 @@ The two latter are installed as git submodules (see below).
 
 Clone the repo:
 ```
-git clone git@github.com:patrontheo/PCSC-Eigenvalue-problems.git
+git clone https://github.com/patrontheo/PCSC-Eigenvalue-problems.git
 cd PCSC-Eigenvalue-problems
 ```
 
@@ -70,7 +74,7 @@ Default: 0.0001
 
 As an example, the following command will read `mat.csv` in the folder `data` and use  
 the shifted inverse power solver with `shift = 5.4` and the error criterion used to   
-check the convergence of the algorithm will be set to `1e-5`(command to be executed  
+check the convergence of the algorithm will be set to `1e-5` (command to be executed  
 in the `build` folder):  
 `./main --filename mat.csv --method inversepower --shift 5.4 --error 1e-5`  
 
@@ -85,7 +89,6 @@ to add another loader.
 The computed eigenvalue(s) are written in the `data/eigenvalues.csv` file.
 
 ## Flow of program
-
 
 <img src="data/Program_flow.png" alt="flowchart" width="300"/>
 
@@ -113,11 +116,16 @@ The following tests are implemented:
 * `qr.solve3x3` checks that the eigenvalue obtained with the qr method are valid on a 3x3 matrix.
 * `qr.solve5x5` checks that the eigenvalue obtained with the qr method are valid on a 5x5 matrix.
 * `load_csv.load_matrix` checks that the matrix loaded from csv file with load_matrix is valid.
-* `abstract_linalg_solver.set_get_matrix` checks that the getter and setter methods for matrix_ member are correct.
-* `abstract_linalg_solver.set_get_error` checks that the getter and setter methods for error_ member are correct.
-* `abstract_linalg_solver.set_get_shift` checks that the getter and setter methods for shift_ member are correct.
+* `abstract_linalg_solver.set_get_matrix` checks that the getter and setter methods for matrix_ attribute are correct.
+* `abstract_linalg_solver.set_get_error` checks that the getter and setter methods for error_ attribute are correct.
+* `abstract_linalg_solver.set_get_shift` checks that the getter and setter methods for shift_ attribute are correct.
 
-
+## Convergence criterion
+To check the convergence of each algorithm, the attribute `error_` is used:
+* In power and inverse power methods, we consider that the algorithm has converged when the residual is lower than  
+`error_`: `||Ax-ux||<error_`, with A the input matrix, x the eigenvector, and u the computed eigenvalue.
+* In the QR method, we consider that the algorithm has converged when the following inequality is met:     
+`||u_old - u_new|| < error_` with u_old/new the vector of computed eigenvalues.
 
 ## Limitations and problems 
 * Some of the limitations of this program lie in the numerical algorithms implemented. If the matrix contains eigenvalues of the same magnitude, the algortihms will not be able to converge. Moreover, if the matrix is singular, which means that it contains eigenvalues equal to zero, the algorithm with also not converge.   
