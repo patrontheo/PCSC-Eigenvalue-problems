@@ -86,7 +86,6 @@ The computed eigenvalue(s) are written in the `data/eigenvalues.csv` file.
 
 ## Flow of program
 
-
 <img src="data/Program_flow.png" alt="flowchart" width="300"/>
 
 ## List of features
@@ -117,7 +116,12 @@ The following tests are implemented:
 * `abstract_linalg_solver.set_get_error` checks that the getter and setter methods for error_ member are correct.
 * `abstract_linalg_solver.set_get_shift` checks that the getter and setter methods for shift_ member are correct.
 
-
+## Convergence criterion
+To check the convergence of each algorithm, the member `error_` is used:
+* In power and inverse power methods, we consider that the algorithm has converged when the residual is lower than  
+`error_`: `||Ax-ux||<error_`, with A the input matrix, x the eigenvector, and u the computed eigenvalue.
+* In the QR method, we consider that the algorithm has converged when the following inequality is met:     
+`||u_old - u_new|| < error_` with u_old/new the vector of computed eigenvalues.
 
 ## Limitations and problems 
 * Some of the limitations of this program lie in the numerical algorithms implemented. If the matrix contains eigenvalues of the same magnitude, the algortihms will not be able to converge. Moreover, if the matrix is singular, which means that it contains eigenvalues equal to zero, the algorithm with also not converge.   
