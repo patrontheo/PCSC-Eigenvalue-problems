@@ -91,7 +91,7 @@ The computed eigenvalue(s) are written in the `data/eigenvalues.csv` file.
 ## List of features
 
 * Changable numerical methods for solving for eigenvalues 
-* Easy conversion to variations of matrices(ex: complex matrices)
+* Easy conversion to variations of matrices (ex: complex matrices) thanks to the use of templated classes
 * No limitations on input matrix size
 * Choice of accuracy with adjustable error 
 * Easy addition of new dataloader
