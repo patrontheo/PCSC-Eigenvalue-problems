@@ -1,6 +1,7 @@
 # PCSC-Eigenvalue-problems
 Project for the Programming concept in Scientific Computing course. 
 
+This Readme acts as the report of the project.
 
 This project implements different numerical methods to solve the eigenvalues of a matrix.  
 The different numerical methods are Power method, Inverse Power method with and without shift  
